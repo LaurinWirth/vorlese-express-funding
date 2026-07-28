@@ -30,5 +30,6 @@ Keine Rechts- oder Steuerberatung.
 
 ## Hinweis
 
-Enthält interne Planungszahlen (gesicherte Finanzierung, Budgetszenarien,
-Deckungsplan). Repository bewusst **privat**.
+Dieses Repository ist **öffentlich** und wird über GitHub Pages ausgeliefert.
+Die Seite enthält bewusst auch interne Planungszahlen (gesicherte Finanzierung,
+Budgetszenarien, Deckungsplan) — das ist eine getroffene Entscheidung, kein Versehen.
