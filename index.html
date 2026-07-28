@@ -1,0 +1,1150 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Förderlandschaft Vorlese-Express Wien</title>
+<style>
+  :root{
+    --paper:#fbf8f3; --paper-2:#fffdfa; --ink:#20201d; --ink-2:#55534c; --ink-3:#8a8779;
+    --line:#e4ded2; --accent:#bf5133; --accent-soft:#fbeee9; --teal:#2c6b68; --teal-soft:#e6f1f0;
+    --gold:#b98526; --gold-soft:#fbf1dc; --red:#a33a3a; --red-soft:#f9e9e9;
+    --shadow:0 1px 2px rgba(40,30,10,.05), 0 8px 24px -12px rgba(40,30,10,.16);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#16161a; --paper-2:#1d1d22; --ink:#eceae4; --ink-2:#a9a69d; --ink-3:#75726a;
+      --line:#302f36; --accent:#e78163; --accent-soft:#2e211c; --teal:#6fbdb7; --teal-soft:#172a29;
+      --gold:#d9a94f; --gold-soft:#2a2317; --red:#e08282; --red-soft:#2d1c1c;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:84px}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 20px}
+
+  /* ---------- header ---------- */
+  header.top{
+    position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid var(--line);
+  }
+  .top-in{display:flex; align-items:center; gap:16px; padding:12px 20px; max-width:1180px; margin:0 auto}
+  .brand{font-weight:700; letter-spacing:-.02em; font-size:15px; white-space:nowrap}
+  .brand span{color:var(--accent)}
+  nav.top-nav{display:flex; gap:2px; overflow-x:auto; margin-left:auto; scrollbar-width:none}
+  nav.top-nav::-webkit-scrollbar{display:none}
+  nav.top-nav a{
+    color:var(--ink-2); text-decoration:none; font-size:13px; font-weight:500;
+    padding:6px 10px; border-radius:8px; white-space:nowrap;
+  }
+  nav.top-nav a:hover{background:var(--paper-2); color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:56px 0 36px; border-bottom:1px solid var(--line)}
+  .kicker{
+    display:inline-block; font-size:12px; font-weight:650; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent); background:var(--accent-soft); padding:5px 11px; border-radius:99px; margin-bottom:18px;
+  }
+  h1{font-size:clamp(30px,4.4vw,46px); line-height:1.1; letter-spacing:-.03em; margin:0 0 16px; font-weight:750}
+  .lede{font-size:clamp(16px,1.6vw,19px); color:var(--ink-2); max-width:62ch; margin:0}
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:32px}
+  .stat{background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px}
+  .stat b{display:block; font-size:26px; letter-spacing:-.03em; line-height:1.1}
+  .stat small{color:var(--ink-3); font-size:12.5px; display:block; margin-top:4px}
+
+  section{padding:48px 0; border-bottom:1px solid var(--line)}
+  h2{font-size:clamp(22px,2.6vw,30px); letter-spacing:-.025em; margin:0 0 8px; font-weight:700}
+  h2 .num{color:var(--ink-3); font-weight:600; font-size:.62em; margin-right:10px; vertical-align:middle}
+  .sub{color:var(--ink-2); max-width:70ch; margin:0 0 28px}
+  h3{font-size:17px; margin:0 0 8px; letter-spacing:-.01em}
+
+  /* ---------- pillars ---------- */
+  .pillars{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+  .pillar{background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--radius); padding:20px}
+  .pillar:nth-child(2){border-left-color:var(--teal)}
+  .pillar:nth-child(3){border-left-color:var(--gold)}
+  .pillar .pct{font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3)}
+  .pillar ul{margin:10px 0 0; padding-left:18px; color:var(--ink-2); font-size:14.5px}
+  .pillar li{margin:4px 0}
+
+  /* ---------- timeline ---------- */
+  .tl{position:relative; margin-top:8px}
+  .tl::before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--line)}
+  .tl-item{position:relative; padding:0 0 22px 34px}
+  .tl-item::before{
+    content:""; position:absolute; left:3px; top:6px; width:14px; height:14px; border-radius:50%;
+    background:var(--paper); border:3px solid var(--ink-3);
+  }
+  .tl-item.now::before{border-color:var(--accent); background:var(--accent)}
+  .tl-item.soon::before{border-color:var(--gold)}
+  .tl-when{font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3)}
+  .tl-item.now .tl-when{color:var(--accent)}
+  .tl-what{font-weight:650; margin:2px 0 3px}
+  .tl-note{color:var(--ink-2); font-size:14.5px}
+
+  /* ---------- filters ---------- */
+  .toolbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:22px}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chip{
+    border:1px solid var(--line); background:var(--paper-2); color:var(--ink-2);
+    padding:7px 13px; border-radius:99px; font-size:13px; font-weight:550; cursor:pointer;
+    font-family:inherit; transition:.14s;
+  }
+  .chip:hover{color:var(--ink); border-color:var(--ink-3)}
+  .chip[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  input[type="search"]{
+    flex:1; min-width:200px; padding:9px 14px; border-radius:99px; border:1px solid var(--line);
+    background:var(--paper-2); color:var(--ink); font:inherit; font-size:14px;
+  }
+  input[type="search"]:focus{outline:2px solid var(--accent); outline-offset:1px}
+  .count{font-size:13px; color:var(--ink-3); margin-bottom:14px}
+
+  /* ---------- cards ---------- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px}
+  .card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:11px;
+  }
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+  .card h3{margin:0; font-size:16.5px; line-height:1.3; font-weight:680}
+  .org{font-size:12.5px; color:var(--ink-3); margin-top:3px}
+  .fit{
+    font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+    padding:4px 9px; border-radius:99px; white-space:nowrap; flex-shrink:0;
+  }
+  .fit.hoch{background:var(--teal-soft); color:var(--teal)}
+  .fit.mittel{background:var(--gold-soft); color:var(--gold)}
+  .fit.niedrig{background:var(--paper); color:var(--ink-3); border:1px solid var(--line)}
+  .meta{display:flex; flex-wrap:wrap; gap:6px}
+  .tag{font-size:12px; padding:3px 9px; border-radius:7px; background:var(--paper); border:1px solid var(--line); color:var(--ink-2)}
+  .tag.money{background:var(--accent-soft); border-color:transparent; color:var(--accent); font-weight:650}
+  .tag.open{background:var(--teal-soft); border-color:transparent; color:var(--teal); font-weight:600}
+  .tag.closed{background:var(--red-soft); border-color:transparent; color:var(--red); font-weight:600}
+  .card p{margin:0; font-size:14.5px; color:var(--ink-2)}
+  .card details{border-top:1px dashed var(--line); padding-top:10px; margin-top:auto}
+  .card summary{cursor:pointer; font-size:13px; font-weight:650; color:var(--ink); list-style:none}
+  .card summary::-webkit-details-marker{display:none}
+  .card summary::before{content:"▸ "; color:var(--accent)}
+  .card details[open] summary::before{content:"▾ "}
+  .card details ul{margin:10px 0 0; padding-left:17px; font-size:13.5px; color:var(--ink-2)}
+  .card details li{margin:5px 0}
+  .tipp{background:var(--accent-soft); border-radius:9px; padding:10px 12px; font-size:13.5px; color:var(--ink)}
+  .tipp b{color:var(--accent)}
+  .card a.go{
+    font-size:13px; font-weight:650; color:var(--accent); text-decoration:none;
+    border-bottom:1px solid color-mix(in srgb, var(--accent) 35%, transparent); align-self:flex-start;
+  }
+  .card a.go:hover{border-bottom-color:var(--accent)}
+
+  /* ---------- checklist ---------- */
+  .checks{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px}
+  .checkbox-block{background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px}
+  .checkbox-block h3{color:var(--accent)}
+  .checkbox-block label{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--ink-2); padding:6px 0; cursor:pointer; border-top:1px solid var(--line)}
+  .checkbox-block label:first-of-type{border-top:none}
+  .checkbox-block input{margin-top:3px; accent-color:var(--accent); flex-shrink:0; width:15px; height:15px}
+  .checkbox-block input:checked + span{color:var(--ink-3); text-decoration:line-through}
+
+  /* ---------- tables ---------- */
+  .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper-2)}
+  table{border-collapse:collapse; width:100%; min-width:520px; font-size:14px}
+  th,td{text-align:left; padding:11px 16px; border-bottom:1px solid var(--line)}
+  th{font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-3); font-weight:650}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+  tfoot td{font-weight:700; background:var(--accent-soft)}
+
+  /* ---------- phases & gap ---------- */
+  .phase{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-bottom:26px}
+  .ph{background:var(--paper-2); border:1px solid var(--line); border-top:3px solid var(--teal); border-radius:var(--radius); padding:18px}
+  .ph.b{border-top-color:var(--accent)}
+  .ph.c{border-top-color:var(--gold)}
+  .ph .when{font-size:11.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3)}
+  .ph h3{margin:7px 0 7px; font-size:16px}
+  .ph p{margin:0; font-size:14px; color:var(--ink-2)}
+  .gapbox{background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px}
+  .gapbox + .gapbox{margin-top:14px}
+  .gaphead{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap}
+  .gaphead h3{margin:0}
+  .gaphead span{font-size:13px; color:var(--ink-3)}
+  .bar{height:28px; border-radius:8px; overflow:hidden; display:flex; margin:12px 0 8px; background:var(--line)}
+  .bar i{display:block; height:100%}
+  .bar .sec{background:var(--teal)}
+  .bar .miss{background:repeating-linear-gradient(45deg, var(--accent-soft), var(--accent-soft) 7px, transparent 7px, transparent 14px); border-left:2px solid var(--accent)}
+  .legend{display:flex; gap:20px; flex-wrap:wrap; font-size:13px; color:var(--ink-2)}
+  .legend b{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px}
+  .note{background:var(--gold-soft); border-left:3px solid var(--gold); padding:14px 18px; border-radius:0 10px 10px 0; font-size:14.5px; color:var(--ink-2)}
+  .note b{color:var(--ink)}
+
+  .cols2{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px}
+  .box{background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius); padding:20px}
+  .box ol,.box ul{margin:8px 0 0; padding-left:19px; color:var(--ink-2); font-size:14.5px}
+  .box li{margin:6px 0}
+
+  .srcs{columns:2 260px; column-gap:26px; font-size:13.5px}
+  .srcs a{display:block; color:var(--ink-2); text-decoration:none; padding:4px 0; break-inside:avoid}
+  .srcs a:hover{color:var(--accent)}
+
+  footer{padding:36px 0 60px; color:var(--ink-3); font-size:13px}
+  @media print{
+    header.top,.toolbar{display:none} .card details{display:block} section{break-inside:auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">Vorlese-Express <span>· Förderlandschaft</span></div>
+    <nav class="top-nav">
+      <a href="#strategie">Strategie</a>
+      <a href="#plan">Plan 2027</a>
+      <a href="#fahrplan">Fahrplan</a>
+      <a href="#foerderungen">Fördertöpfe</a>
+      <a href="#auflagen">Auflagen</a>
+      <a href="#antrag">Antrag</a>
+      <a href="#budget">Budget</a>
+      <a href="#quellen">Quellen</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="kicker">Recherchestand 28. Juli 2026</span>
+    <h1>Wie du den Vorlese-Express<br>in Österreich finanzierst.</h1>
+    <p class="lede">Finanzierungsplan für das erste Betriebsjahr: <b>30 Familien in Wien im Jahr 2027</b>. Jänner bis März Aufbau — Freiwillige rekrutieren, Familien finden, Schulungen aufsetzen, Fundraising. Ab April 2027 laufen die wöchentlichen Hausbesuche über 20 Wochen. € 10.000 sind bereits gesichert.</p>
+    <div class="stats">
+      <div class="stat"><b>30</b><small>Familien im Jahr 1 (2027)</small></div>
+      <div class="stat"><b>€ 10.000</b><small>bereits gesichert</small></div>
+      <div class="stat"><b>€ 20.190 – 50.540</b><small>Jahresbudget je nach Szenario</small></div>
+      <div class="stat" style="border-color:var(--accent)"><b style="color:var(--accent)">Sept. 2026</b><small>Deadline für den wichtigsten Antrag</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STRATEGIE ============ -->
+<section id="strategie">
+  <div class="wrap">
+    <h2><span class="num">01</span>Die Finanzierungsstrategie</h2>
+    <p class="sub">Kein einzelner Topf trägt ein Vorleseprojekt. Wer in Österreich ehrenamtsbasierte Bildungsarbeit dauerhaft finanziert, baut auf drei Säulen — öffentliche Hand für die Grundlast, Stiftungen &amp; Preise für Wachstum und Sichtbarkeit, Eigenmittel für Unabhängigkeit. Plane von Anfang an mit allen dreien.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pct">Säule 1 · ca. 50–60 %</div>
+        <h3>Öffentliche Hand</h3>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:6px 0 0">Stadt Wien (MA 17, MA 13, Bezirk) + Bund (Anerkennungsfonds, Elternbildung) + mittelfristig AMIF.</p>
+        <ul>
+          <li>Planbar, wiederholbar, aber langsam und formalistisch</li>
+          <li>Fast immer <em>vor</em> Projektbeginn zu beantragen</li>
+          <li>Kalenderjahr-Logik — Anträge im Herbst fürs Folgejahr</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pct">Säule 2 · ca. 25–35 %</div>
+        <h3>Stiftungen &amp; Preise</h3>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:6px 0 0">MEGA Bildungsstiftung, Sinnstifter-Verbund, SozialMarie, Bank&nbsp;Austria Sozialpreis, Licht ins Dunkel.</p>
+        <ul>
+          <li>Größere Summen, weniger Bürokratie, mehr Story</li>
+          <li>Preise liefern zusätzlich Presse und Glaubwürdigkeit</li>
+          <li>Brauchen ein <em>laufendes</em> Projekt mit ersten Ergebnissen</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pct">Säule 3 · ca. 10–20 %</div>
+        <h3>Eigenmittel</h3>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:6px 0 0">Spenden, Patenschaften, Mitgliedsbeiträge, Crowdfunding, Sachspenden.</p>
+        <ul>
+          <li>Fast jeder Fördergeber verlangt einen Eigenmittelanteil</li>
+          <li>Die <strong>Spendenbegünstigung nach § 4a EStG</strong> ist der größte Hebel</li>
+          <li>Sachspenden (Bücher, IT) senken den Bargeldbedarf spürbar</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note" style="margin-top:20px">
+      <b>Für euren Zeitplan gilt eine harte Regel:</b> Geld, das im Jänner 2027 auf dem Konto sein soll, muss im <b>Herbst 2026</b> beantragt werden. Öffentliche Geber brauchen 2–4 Monate, und praktisch alle fördern nur Kosten, die <em>nach</em> der Bewilligung entstehen. Die Aufbauphase Jänner–März ist dabei am schwersten zu finanzieren: reine Vorbereitungskosten, noch keine betreuten Familien, noch keine Wirkungsdaten. Genau dafür sind eure € 10.000 da — und genau deshalb ist der Anerkennungsfonds (keine Frist, Projektlaufzeit bis 2 Jahre, deckt Aufbau <em>und</em> Durchführung in einem Antrag) jetzt euer wichtigster Antrag.
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLAN 2027 ============ -->
+<section id="plan">
+  <div class="wrap">
+    <h2><span class="num">02</span>Projektjahr 2027 und die Finanzierungslücke</h2>
+    <p class="sub">30 Familien, Aufbau von Jänner bis März, Hausbesuche ab April. Ein 20-Wochen-Zyklus ab April endet Mitte/Ende August — danach bleibt Zeit für Auswertung, Nachbetreuung und die Vorbereitung des Folgejahrgangs.</p>
+
+    <div class="phase">
+      <div class="ph">
+        <div class="when">Jän – Mär 2027 · Aufbau</div>
+        <h3>Setup &amp; Rekrutierung</h3>
+        <p>Freiwillige gewinnen und schulen, Familien über Kindergärten, Schulen, Nachbarschaftszentren und Beratungsstellen finden, Kinderschutzkonzept und Strafregisterbescheinigungen, Matching, Versicherung, parallel Fundraising.</p>
+      </div>
+      <div class="ph b">
+        <div class="when">April – ca. Aug 2027 · Betrieb</div>
+        <h3>20 Wochen Hausbesuche</h3>
+        <p>30 Familien, je 1× wöchentlich. Laufend: Koordination, Nachbesetzung bei Ausfällen, Supervision der Freiwilligen, Vertiefungsschulung, Bücherausstattung.</p>
+      </div>
+      <div class="ph c">
+        <div class="when">Sept – Dez 2027 · Ernte</div>
+        <h3>Wirkung, Preise, Folgejahr</h3>
+        <p>Auswertung und Wirkungsbericht, Abrechnung aller Förderungen, Einreichung beim ÖIF-Integrationspreis, Anträge für 2028, Aufbau des zweiten Jahrgangs.</p>
+      </div>
+    </div>
+
+    <div class="gapbox">
+      <div class="gaphead">
+        <h3>Szenario A — „Schlank“: € 20.190</h3>
+        <span>Koordination geringfügig / ehrenamtlich · € 673 pro Familie</span>
+      </div>
+      <div class="bar"><i class="sec" style="width:49.5%"></i><i class="miss" style="width:50.5%"></i></div>
+      <div class="legend">
+        <span><b style="background:var(--teal)"></b>€ 10.000 gesichert (49 %)</span>
+        <span><b style="background:var(--accent)"></b>€ 10.190 offen</span>
+      </div>
+      <p style="font-size:14px;color:var(--ink-2);margin:12px 0 0">Machbar, aber fragil: Die Koordination von 30 Familien und 30 Freiwilligen nebenbei zu stemmen, ist der klassische Grund, warum Vorleseprojekte im zweiten Jahr einschlafen. <b>Die Lücke ist mit einem einzigen Antrag beim Anerkennungsfonds schließbar.</b></p>
+    </div>
+
+    <div class="gapbox">
+      <div class="gaphead">
+        <h3>Szenario B — „Tragfähig“: € 50.540</h3>
+        <span>Angestellte Koordination 20 h/Woche · € 1.685 pro Familie im Jahr 1</span>
+      </div>
+      <div class="bar"><i class="sec" style="width:19.8%"></i><i class="miss" style="width:80.2%"></i></div>
+      <div class="legend">
+        <span><b style="background:var(--teal)"></b>€ 10.000 gesichert (20 %)</span>
+        <span><b style="background:var(--accent)"></b>€ 40.540 offen</span>
+      </div>
+      <p style="font-size:14px;color:var(--ink-2);margin:12px 0 0">Der Kostensatz je Familie wirkt hoch, weil der komplette einmalige Aufbau (Schulungscurriculum, Kinderschutzkonzept, Website, Software, Material) im ersten Jahr steckt. <b>Im zweiten Jahr betreut dieselbe Koordination rund 60 Familien für ca. € 45.000 — das sind € 750 pro Familie.</b> Genau diese Rechnung überzeugt Stiftungen: ihr finanziert kein Projekt, sondern baut eine Struktur.</p>
+    </div>
+
+    <h3 style="margin:30px 0 10px">Deckungsplan für Szenario B</h3>
+    <p class="sub" style="margin-bottom:16px">Jeder Topf bekommt eigene, klar abgegrenzte Kostenpositionen — Doppelförderung derselben Kosten ist verboten und der häufigste Grund für Rückforderungen.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Quelle</th><th>Deckt</th><th class="num">Betrag</th><th>Einreichen bis</th></tr></thead>
+        <tbody>
+          <tr><td><b>Bereits gesichert</b></td><td>Liquidität für die Aufbauphase Jän–Mär</td><td class="num">€ 10.000</td><td>—</td></tr>
+          <tr><td>Anerkennungsfonds (Sozialministerium)</td><td>Koordination Aufbau + Betrieb, Versicherung, Freiwilligenwerbung</td><td class="num">€ 18.000</td><td>September 2026</td></tr>
+          <tr><td>MA 13 Kleinprojekt</td><td>Erst-Schulung, Vertiefungsschulungen, Supervision</td><td class="num">€ 5.000</td><td>Anfang Nov. 2026</td></tr>
+          <tr><td>MA 17 Kleinprojekt</td><td>Mehrsprachiges Material, Übersetzungen, Familienakquise, Öffentlichkeitsarbeit</td><td class="num">€ 5.000</td><td>15. Jänner 2027</td></tr>
+          <tr><td>Licht ins Dunkel</td><td>Bücherpakete, Fahrtkostenersatz, Erstausstattung</td><td class="num">€ 4.000</td><td>bis 31. Dez. 2026</td></tr>
+          <tr><td>Bezirksförderungen (2–3 Bezirke)</td><td>Auftakt- und Abschlussfeste im Grätzl</td><td class="num">€ 2.500</td><td>Februar 2027</td></tr>
+          <tr><td>Service-Clubs, Patenschaften, Spenden</td><td>Wirkungsmessung, Overhead, Puffer</td><td class="num">€ 6.040</td><td>laufend</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Summe</td><td class="num">€ 50.540</td><td>gedeckt</td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:20px">
+      <b>Zu euren € 10.000:</b> Klärt, ob sie zweckgebunden sind. Wenn sie aus öffentlicher Hand kommen, müsst ihr sie in jedem weiteren Antrag offenlegen und dürfen dieselben Kosten kein zweites Mal fördern lassen. Wenn sie frei verwendbar sind (Privatspende, Stiftung, Firma), sind sie doppelt wertvoll: Sie überbrücken die Aufbauphase, in der noch keine Fördermittel fließen — <em>und</em> sie zählen als Eigenmittelanteil, den fast jeder öffentliche Geber sehen will. Schreibt „bereits gesicherte Finanzierung: € 10.000“ in jeden Antrag, das erhöht die Bewilligungswahrscheinlichkeit spürbar.
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAHRPLAN ============ -->
+<section id="fahrplan">
+  <div class="wrap">
+    <h2><span class="num">03</span>Rückwärts geplant: was wann eingereicht sein muss</h2>
+    <p class="sub">Nicht nach Fristen sortiert, sondern nach eurem Bedarf: Das Geld muss da sein, <em>bevor</em> die Kosten entstehen. Ausgangspunkt ist der 28. Juli 2026.</p>
+    <div class="tl">
+      <div class="tl-item now">
+        <div class="tl-when">August – September 2026 · höchste Priorität</div>
+        <div class="tl-what">Anerkennungsfonds für freiwilliges Engagement einreichen</div>
+        <div class="tl-note">Keine Frist, aber quartalsweise Bearbeitung — ein Antrag im September wird realistisch im vierten Quartal entschieden, das Geld steht damit zum Jännerstart bereit. Entscheidend: Die zulässige Projektlaufzeit von <b>bis zu zwei Jahren</b> erlaubt euch, Aufbauphase <em>und</em> Betrieb 2027 in einem einzigen Antrag zu bündeln. Beantragt € 18.000–20.000 für Koordination, Schulung, Supervision, Versicherung und Freiwilligenwerbung.</div>
+      </div>
+      <div class="tl-item now">
+        <div class="tl-when">September – Oktober 2026</div>
+        <div class="tl-what">Stiftungen und Service-Clubs ansprechen</div>
+        <div class="tl-note">Stiftungsentscheidungen dauern Monate und laufen über Gespräche, nicht über Formulare. Jetzt Kurzkonzept (2 Seiten) an die Sinnstifter-Stiftungen schicken und Vorträge bei Wiener Rotary-, Lions- und Zonta-Clubs vereinbaren — dort fällt die Zusage oft binnen Wochen und ihr gewinnt gleichzeitig Vorleser:innen.</div>
+      </div>
+      <div class="tl-item soon">
+        <div class="tl-when">bis 15. Oktober 2026</div>
+        <div class="tl-what">Elternbildungsförderung des Bundes (BKA, aus dem FLAF)</div>
+        <div class="tl-note">Harte Jahresfrist für das Förderjahr 2027 — verpasst heißt ein Jahr warten. Nur sinnvoll, wenn ihr Elternformate fix ins Programm nehmt (Elternabende „Wie lese ich meinem Kind vor?“, dialogisches Lesen). <b>Vorlauf einplanen:</b> Einreichung läuft nur online über das Transparenzportal und alle Zeichnungsberechtigten brauchen ID Austria — das jetzt beantragen, nicht am 14. Oktober.</div>
+      </div>
+      <div class="tl-item soon">
+        <div class="tl-when">Oktober – November 2026</div>
+        <div class="tl-what">Licht ins Dunkel (Fenster endet 31. Dezember 2026)</div>
+        <div class="tl-note">Braucht einen Finanzierungsplan für drei Jahre und eine Zukunftsstrategie — plant zwei Wochen Schreibarbeit ein. Nur <b>ein</b> geförderter Antrag je Träger in drei Jahren: setzt ihn auf Bücherpakete, Fahrtkosten und Erstausstattung, nicht auf Kleinkram.</div>
+      </div>
+      <div class="tl-item soon">
+        <div class="tl-when">bis Anfang November 2026</div>
+        <div class="tl-what">MA 13 Kleinprojektförderung — 8 Wochen vor Projektstart</div>
+        <div class="tl-note">Wenn die Aufbauphase am 2. Jänner startet, muss der Antrag Anfang November drin sein. Erstantragsteller:innen melden sich vorab per Mail bei <code>jugend@ma13.wien.gv.at</code> — klärt dabei gleich, ob der Antrag aus dem Budget 2027 bedient wird, da die Stadt kalenderjahrbezogen fördert.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">15. Jänner 2027</div>
+        <div class="tl-what">MA 17 Integrations-Kleinprojekt</div>
+        <div class="tl-note">Der richtige Termin für euch — nicht der 15.9.2026. MA 17 fördert kalenderjahrbezogen, das Projekt muss innerhalb von 2027 beginnen und enden. Eure Besuchsphase April–August passt exakt. Weitere Termine 15.3. / 15.5. / 15.9. als Rückfalloptionen.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Februar 2027</div>
+        <div class="tl-what">Bezirksförderung für das Auftaktfest</div>
+        <div class="tl-note">Mindestens 6 Wochen vor der Veranstaltung bei der Bezirksvorstehung. Reicht parallel in allen Bezirken ein, in denen ihr Familien betreut — jeder Bezirk hat ein eigenes Budget. Ein Auftaktfest im April ist zugleich Presse-, Familien- und Freiwilligenakquise.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">ab April 2027 · Projektstart</div>
+        <div class="tl-what">Bank Austria Sozialpreis (Fenster 2026: 22.4. – 11.5.)</div>
+        <div class="tl-note">Erste Preischance, weil das Projekt dann tatsächlich läuft. Das Publikumsvoting im Sommer entscheidet die Reihung — baut ab Jänner Newsletter- und Social-Media-Liste aus Freiwilligen, Familien und Unterstützer:innen auf.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Juli – 13. September 2027</div>
+        <div class="tl-what">Österreichischer Integrationspreis (ÖIF)</div>
+        <div class="tl-note"><b>Nicht 2026:</b> Der Preis verlangt ein bereits laufendes Projekt, eure Besuche starten erst im April 2027. Im September 2027 läuft das Programm seit fünf Monaten — dann ist die Einreichung stark und liefert die ÖIF-Referenz für spätere AMIF-Anträge.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Herbst 2027</div>
+        <div class="tl-what">Spendenbegünstigung § 4a EStG beantragen</div>
+        <div class="tl-note">Möglich, sobald ein volles 12-monatiges Wirtschaftsjahr vorliegt — bei Vereinsgründung 2026 also ab Ende 2027. Antrag läuft zwingend über eine Steuerberatung via FinanzOnline. Ab dann sind Spenden absetzbar, was Firmen- und Großspendengespräche völlig verändert.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Jänner – Februar 2028</div>
+        <div class="tl-what">SozialMarie</div>
+        <div class="tl-note"><b>Nicht Februar 2027:</b> Das Projekt muss zum Einreichzeitpunkt bereits ausreichend umgesetzt sein und noch laufen — im Februar 2027 habt ihr noch keinen einzigen Hausbesuch gemacht. Ein Jahr später habt ihr 30 abgeschlossene Begleitungen und Wirkungsdaten. 1. Preis € 15.000.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">voraussichtlich Frühjahr 2028</div>
+        <div class="tl-what">AMIF-Aufruf für die Projektjahre 2029/30</div>
+        <div class="tl-note">Der größte inhaltlich passende Topf (€ 8,68 Mio p. a. allein für „Bildung“). Der Aufruf 2027/28 endete am 12.5.2026. Nutzt 2027, um Wirkungsdaten und Referenzen zu sammeln und euch als Projektpartner bei einem etablierten Träger zu positionieren.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FÖRDERUNGEN ============ -->
+<section id="foerderungen">
+  <div class="wrap">
+    <h2><span class="num">04</span>Alle Fördertöpfe im Detail</h2>
+    <p class="sub">31 Quellen, gefiltert nach Ebene. „Passung" bewertet, wie gut der Topf zum Vorlese-Express passt — nicht wie groß er ist. Klick auf „Auflagen &amp; Bedingungen" für die Details jedes Topfs.</p>
+
+    <div class="toolbar">
+      <div class="chips" id="chips"></div>
+      <input type="search" id="q" placeholder="Suchen: z. B. Freiwillige, Bücher, Frist, Wien …" aria-label="Fördertöpfe durchsuchen">
+    </div>
+    <div class="count" id="count"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ============ AUFLAGEN ============ -->
+<section id="auflagen">
+  <div class="wrap">
+    <h2><span class="num">05</span>Auflagen: was ihr <em>vorher</em> erledigt haben müsst</h2>
+    <p class="sub">Diese Punkte tauchen quer über fast alle Fördergeber auf. Ohne sie werden Anträge formal zurückgewiesen — unabhängig davon, wie gut das Projekt ist. Der Haken bleibt in diesem Browser gespeichert.</p>
+    <div class="checks">
+      <div class="checkbox-block">
+        <h3>Vereins- &amp; Rechtsbasis</h3>
+        <label><input type="checkbox" data-k="c1"><span>ZVR-Zahl und aktueller Vereinsregisterauszug (BMI) griffbereit — wird bei fast jedem Antrag verlangt</span></label>
+        <label><input type="checkbox" data-k="c2"><span>Statuten enthalten einen ausdrücklich <b>gemeinnützigen Zweck</b> nach §§ 34 ff. BAO, kein Gewinnstreben, klare Vermögensbindung bei Auflösung</span></label>
+        <label><input type="checkbox" data-k="c3"><span>Vertretungsbefugte Personen haben <b>ID Austria</b> (Pflicht für Bundesanträge über das Transparenzportal)</span></label>
+        <label><input type="checkbox" data-k="c4"><span>Eigene Einnahmen-Ausgaben-Rechnung bzw. Rechnungsabschluss des Vorjahres liegt vor</span></label>
+        <label><input type="checkbox" data-k="c5"><span>Eigenes Vereinskonto, saubere Belegablage, interne Buchhaltung ab Tag 1</span></label>
+      </div>
+      <div class="checkbox-block">
+        <h3>Kinderschutz — bei euch zwingend</h3>
+        <label><input type="checkbox" data-k="c6"><span><b>Kinderschutzkonzept</b> schriftlich: Risikoanalyse, Verhaltenskodex, Kinderschutzbeauftragte:r, Beschwerdeweg, Interventionsplan</span></label>
+        <label><input type="checkbox" data-k="c7"><span><b>Strafregisterbescheinigung Kinder- und Jugendfürsorge</b> von <em>jeder</em> vorlesenden Person — bei Vorlage nicht älter als 3 Monate, Erneuerung nach 5 Jahren; für Ehrenamtliche mit Bestätigung des Vereins kostenlos</span></label>
+        <label><input type="checkbox" data-k="c8"><span>Verhaltenskodex wird von jeder neuen freiwilligen Person unterschrieben (Hausbesuche = besonders sensibles Setting: Zwei-Personen-Regel oder Anwesenheit eines Elternteils regeln)</span></label>
+        <label><input type="checkbox" data-k="c9"><span>Verpflichtende Erst-Schulung + laufende Begleitung/Supervision der Freiwilligen dokumentiert</span></label>
+      </div>
+      <div class="checkbox-block">
+        <h3>Absicherung &amp; Datenschutz</h3>
+        <label><input type="checkbox" data-k="c10"><span>Haftpflicht- und Unfallversicherung für Freiwillige geklärt (Vereinsversicherung; in Wien gibt es keinen automatischen Landes-Schutzschirm wie in NÖ/OÖ)</span></label>
+        <label><input type="checkbox" data-k="c11"><span>DSGVO: Einwilligungen der Eltern für Familiendaten, Fotos und Wirkungserhebung; Verarbeitungsverzeichnis; Löschfristen</span></label>
+        <label><input type="checkbox" data-k="c12"><span>Mehrsprachige Einverständnis- und Infoblätter für Familien (senkt Barrieren <em>und</em> punktet im Antrag)</span></label>
+      </div>
+      <div class="checkbox-block">
+        <h3>Förderlogik &amp; Abrechnung</h3>
+        <label><input type="checkbox" data-k="c13"><span>Antrag <b>immer vor Projektbeginn</b> — MA 13 mind. 8 Wochen, Bezirksförderung mind. 6 Wochen vorher</span></label>
+        <label><input type="checkbox" data-k="c14"><span><b>Wien-Bezug</b> und <b>öffentliches Interesse</b> im Antragstext explizit benennen (Pflichtkriterium der Stadt Wien)</span></label>
+        <label><input type="checkbox" data-k="c15"><span>Alle anderen beantragten/erhaltenen Förderungen offenlegen — Doppelförderung derselben Kosten ist verboten</span></label>
+        <label><input type="checkbox" data-k="c16"><span>Bewusst sein: Förderungen ab € 1.500 werden seit 1.9.2025 öffentlich im Transparenzportal veröffentlicht</span></label>
+        <label><input type="checkbox" data-k="c17"><span>Abrechnung mit Sachbericht + Belegliste + Zahlungsnachweisen; ab € 10.000 alle Belege inkl. Lohnkonten</span></label>
+        <label><input type="checkbox" data-k="c18"><span>MA 17: neue Kleinprojektanträge nur möglich, wenn das Vorjahresprojekt positiv abgeschlossen und abgerechnet ist</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANTRAG ============ -->
+<section id="antrag">
+  <div class="wrap">
+    <h2><span class="num">06</span>Was in jeden Antrag gehört</h2>
+    <p class="sub">Fast alle Formulare fragen dasselbe in unterschiedlicher Reihenfolge. Schreibt diese Bausteine einmal sauber und in mehreren Längen (½ Seite / 2 Seiten / 6 Seiten) — dann kostet jeder weitere Antrag nur noch Anpassung.</p>
+    <div class="cols2">
+      <div class="box">
+        <h3>Die Wirkungslogik (der Kern jedes Antrags)</h3>
+        <ol>
+          <li><b>Problem:</b> Kinder mit Migrationsgeschichte starten in Wien mit deutlich weniger deutscher Sprachpraxis und Vorleseerfahrung in die Schule. Belegt mit Wiener Daten (Bildungsdirektion, Statistik Austria, Sprachstandsfeststellung).</li>
+          <li><b>Zielgruppe:</b> Kinder 2–8 Jahre <em>und ihre Familien</em>, erreicht im häuslichen Umfeld — dort, wo Komm-Strukturen wie Bibliotheken oder Kurse nicht hinkommen.</li>
+          <li><b>Intervention:</b> 20 Wochen, 1× wöchentlich, geschulte freiwillige Person, Vorlesen + Spielen + Gespräch, plus Bücherausstattung.</li>
+          <li><b>Output (zählbar):</b> X Familien, Y Vorlesestunden, Z geschulte Freiwillige, N Bücher.</li>
+          <li><b>Outcome (messbar):</b> Sprachpraxis der Kinder, Vorlesehäufigkeit der Eltern nach Programmende, Bibliotheksanmeldungen, Selbstwirksamkeit der Eltern.</li>
+          <li><b>Wirkung:</b> Bessere Startchancen im Schulsystem, Vertrauen und Kontakt zwischen Familien und Aufnahmegesellschaft.</li>
+        </ol>
+      </div>
+      <div class="box">
+        <h3>Argumente, die bei österreichischen Gebern ziehen</h3>
+        <ul>
+          <li><b>Hebelwirkung des Ehrenamts:</b> jeder Förder-Euro erzeugt ein Vielfaches an unbezahlter Vorlesezeit — rechnet das vor (z. B. 20 Std. × Freiwilligenstundenwert).</li>
+          <li><b>Aufsuchender Ansatz:</b> ihr erreicht Familien, die Komm-Angebote nicht erreichen — das ist das stärkste Alleinstellungsmerkmal und zugleich das SozialMarie-Innovationskriterium.</li>
+          <li><b>Ganze Familie statt nur Kind:</b> Eltern werden aktiviert, nicht ersetzt — das trifft die Elternbildungs- und Integrationslogik des Bundes.</li>
+          <li><b>Beidseitiger Austausch:</b> „kultureller Austausch" statt Defizitrhetorik — passt zur Diversitätslinie der MA 17.</li>
+          <li><b>Skalierbarkeit:</b> Handbuch, Schulungscurriculum, Bezirks-Rollout — Stiftungen fördern Modelle, nicht Einzelaktionen.</li>
+          <li><b>Kinderschutz:</b> Konzept aktiv im Antrag erwähnen. Bei Hausbesuchen ist das ein K.-o.-Kriterium in der Jury-Diskussion.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Standard-Beilagen (einmal anlegen, immer wiederverwenden)</h3>
+        <ul>
+          <li>Vereinsregisterauszug + Statuten</li>
+          <li>Ausweiskopie der vertretungsbefugten Person</li>
+          <li>Finanzplan / Kosten- und Finanzierungsplan (XLSX-Vorlagen der Stadt Wien verwenden)</li>
+          <li>Projektbeschreibung: wer, was, wie, wann, wo, Eigenleistung</li>
+          <li>Zeitplan / Meilensteine</li>
+          <li>Rechnungsabschluss bzw. Vermögensübersicht</li>
+          <li>Kinderschutzkonzept (als Beilage, auch wenn nicht verlangt)</li>
+          <li>Kooperationsbestätigungen (Bibliothek, Kindergarten, Schule, Nachbarschaftszentrum)</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Häufige Ablehnungsgründe</h3>
+        <ul>
+          <li>Antrag <em>nach</em> Projektbeginn eingereicht</li>
+          <li>Kein Eigenmittelanteil ausgewiesen</li>
+          <li>Wirkung nur behauptet, nicht messbar formuliert</li>
+          <li>Budget ohne Bezug zu den beschriebenen Aktivitäten</li>
+          <li>Passt nicht zum aktuellen Förderschwerpunkt (z. B. MA 17 2025/26: 14–25 Jahre)</li>
+          <li>Vorjahresabrechnung offen</li>
+          <li>Reine Anschaffungen ohne erkennbaren Projektbezug (explizit ausgeschlossen beim Anerkennungsfonds)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUDGET ============ -->
+<section id="budget">
+  <div class="wrap">
+    <h2><span class="num">07</span>Budget 2027 im Detail</h2>
+    <p class="sub">30 Familien, 30 Freiwillige, Aufbau Jänner–März, Besuche ab April. Beide Szenarien unterscheiden sich nur in einer Position: ob die Koordination geringfügig oder als 20-Stunden-Anstellung läuft. Alles andere ist weitgehend fix. Wichtig für die Antragstellung: <b>Freiwilligen-Pauschalen sind beim Anerkennungsfonds ausdrücklich nicht förderbar</b>, Fahrtkostenersatz, Schulung, Versicherung und Koordination dagegen schon.</p>
+
+    <h3 style="margin:26px 0 10px">Szenario A — „Schlank“ (Koordination geringfügig, € 550/Monat)</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Position</th><th>Annahme</th><th class="num">Jän–Mär</th><th class="num">Apr–Dez</th></tr></thead>
+        <tbody>
+          <tr><td>Koordination (geringfügig)</td><td>12 Monate × € 550</td><td class="num">€ 1.650</td><td class="num">€ 4.950</td></tr>
+          <tr><td>Freiwilligenwerbung</td><td>Flyer, Social Ads, Infoabende</td><td class="num">€ 900</td><td class="num">€ 700</td></tr>
+          <tr><td>Erst-Schulung</td><td>2 Tage, 30 Personen</td><td class="num">€ 2.200</td><td class="num">—</td></tr>
+          <tr><td>Vertiefungsschulung</td><td>1 Halbtag im Zyklus</td><td class="num">—</td><td class="num">€ 600</td></tr>
+          <tr><td>Kinderschutzkonzept</td><td>Vorlage + Beratung</td><td class="num">€ 600</td><td class="num">—</td></tr>
+          <tr><td>Vereins-Setup, Website, Datenschutz, IT</td><td>teils über stifter-helfen.at</td><td class="num">€ 800</td><td class="num">—</td></tr>
+          <tr><td>Versicherung Freiwillige</td><td>Jahrespolizze</td><td class="num">€ 900</td><td class="num">—</td></tr>
+          <tr><td>Familienakquise, mehrsprachiges Infomaterial</td><td>Kooperationen, Übersetzung</td><td class="num">€ 800</td><td class="num">—</td></tr>
+          <tr><td>Bücherpakete</td><td>30 × € 35</td><td class="num">—</td><td class="num">€ 1.050</td></tr>
+          <tr><td>Fahrtkostenersatz Freiwillige</td><td>30 × 20 Wochen × € 2,40</td><td class="num">—</td><td class="num">€ 1.440</td></tr>
+          <tr><td>Supervision</td><td>6 Termine × € 250</td><td class="num">—</td><td class="num">€ 1.500</td></tr>
+          <tr><td>Auftakt- und Abschlussfest</td><td>2 Veranstaltungen</td><td class="num">—</td><td class="num">€ 1.000</td></tr>
+          <tr><td>Evaluation</td><td>intern, Fragebogen vorher/nachher</td><td class="num">—</td><td class="num">€ 500</td></tr>
+          <tr><td>Strafregisterbescheinigungen</td><td>30 × € 0 (Ehrenamt, kostenlos)</td><td class="num">€ 0</td><td class="num">—</td></tr>
+          <tr><td>Overhead / Verwaltung</td><td>max. 5 % (Anerkennungsfonds-Limit)</td><td class="num">—</td><td class="num">€ 600</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Summe € 20.190 · € 673 pro Familie</td><td class="num">€ 7.850</td><td class="num">€ 12.340</td></tr></tfoot>
+      </table>
+    </div>
+
+    <h3 style="margin:32px 0 10px">Szenario B — „Tragfähig“ (Koordination 20 h/Woche angestellt)</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Position</th><th>Annahme</th><th class="num">Jän–Mär</th><th class="num">Apr–Dez</th></tr></thead>
+        <tbody>
+          <tr><td>Koordination 20 h/Woche</td><td>Vollkosten inkl. Lohnnebenkosten, ca. € 2.300/Monat</td><td class="num">€ 6.900</td><td class="num">€ 20.700</td></tr>
+          <tr><td>Freiwilligenwerbung</td><td>laufend, mehrkanalig</td><td class="num">€ 1.400</td><td class="num">€ 1.600</td></tr>
+          <tr><td>Erst-Schulung</td><td>2 Tage, externe Trainer:in, Raum, Verpflegung</td><td class="num">€ 3.000</td><td class="num">—</td></tr>
+          <tr><td>Vertiefungsschulungen</td><td>2 Termine im Zyklus</td><td class="num">—</td><td class="num">€ 1.200</td></tr>
+          <tr><td>Kinderschutzkonzept</td><td>extern erstellt und begleitet</td><td class="num">€ 1.200</td><td class="num">—</td></tr>
+          <tr><td>Vereins-Setup, Website, Freiwilligen-Software, Datenschutz</td><td>CRM/Matching-Tool</td><td class="num">€ 1.800</td><td class="num">—</td></tr>
+          <tr><td>Versicherung Freiwillige</td><td>Jahrespolizze</td><td class="num">€ 900</td><td class="num">—</td></tr>
+          <tr><td>Familienakquise, Übersetzungen</td><td>4 Sprachen</td><td class="num">€ 1.300</td><td class="num">—</td></tr>
+          <tr><td>Bücherpakete</td><td>30 × € 45</td><td class="num">—</td><td class="num">€ 1.350</td></tr>
+          <tr><td>Fahrtkostenersatz Freiwillige</td><td>30 × 20 Wochen × € 2,40</td><td class="num">—</td><td class="num">€ 1.440</td></tr>
+          <tr><td>Supervision</td><td>9 Termine × € 250</td><td class="num">—</td><td class="num">€ 2.250</td></tr>
+          <tr><td>Auftakt- und Abschlussfest</td><td>2 Veranstaltungen</td><td class="num">—</td><td class="num">€ 1.400</td></tr>
+          <tr><td>Externe Wirkungsmessung</td><td>Erhebung vorher/nachher, Bericht</td><td class="num">—</td><td class="num">€ 2.500</td></tr>
+          <tr><td>Overhead / Verwaltung</td><td>max. 5 %</td><td class="num">—</td><td class="num">€ 1.600</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Summe € 50.540 · € 1.685 pro Familie (Jahr 1)</td><td class="num">€ 16.500</td><td class="num">€ 34.040</td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:20px">
+      <b>Rechnet die Ehrenamtsleistung sichtbar dazu:</b> 30 Freiwillige × 20 Wochen × ca. 2 Stunden inkl. Weg = <b>1.200 Stunden</b>. Als Eigenleistung ausgewiesen (bei einem üblichen Ansatz von € 15/Stunde entspricht das rund € 18.000), zeigt das jedem Geber, dass sein Euro ein Vielfaches an Wirkung auslöst — und deckt in manchen Programmen formal den geforderten Eigenmittelanteil. Zusammen mit euren gesicherten € 10.000 steht ihr damit in jedem Antrag sehr solide da.
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUELLEN ============ -->
+<section id="quellen">
+  <div class="wrap">
+    <h2><span class="num">08</span>Quellen</h2>
+    <p class="sub">Alle Angaben aus offiziellen Seiten, Stand 28. Juli 2026. Fristen und Schwerpunkte ändern sich jährlich — vor jedem Antrag am Original nachprüfen.</p>
+    <div class="srcs">
+      <a href="https://www.wien.gv.at/zusammenleben/integration-foerderungen" target="_blank" rel="noopener">Stadt Wien — Integrationsförderungen (MA 17)</a>
+      <a href="https://www.wien.gv.at/amtswege/foerderungen-integrationskleinprojekte-bis-5000-euro" target="_blank" rel="noopener">MA 17 — Kleinprojekte bis € 5.000</a>
+      <a href="https://www.wien.gv.at/amtshelfer/dokumente/aufenthalt/integration/foerderungen/integrationsgrossprojekte.html" target="_blank" rel="noopener">MA 17 — Großprojekte ab € 5.000</a>
+      <a href="https://www.wien.gv.at/amtshelfer/finanzielles/foerderungen/bildung/projekte/foerderungklein.html" target="_blank" rel="noopener">MA 13 — Kleinprojektförderung bis € 5.000</a>
+      <a href="https://www.wien.gv.at/amtswege/wienweite-spezielle-angebote-foerderungsantrag-foerderabrechnung" target="_blank" rel="noopener">MA 13 — wienweite/spezielle Angebote</a>
+      <a href="https://www.wien.gv.at/amtshelfer/kultur/projekte/subventionen/bezirk.html" target="_blank" rel="noopener">Dezentrale Bezirkskulturförderung</a>
+      <a href="https://wieneuplus.wien.gv.at/graetzlmarie" target="_blank" rel="noopener">Grätzlmarie (WieNeu+)</a>
+      <a href="https://www.gbstern.at/news/neues-fuer-die-nachbarschaft/" target="_blank" rel="noopener">Nachbarschatz / GB*</a>
+      <a href="https://bildungschancen.wien/" target="_blank" rel="noopener">Wiener Bildungschancen</a>
+      <a href="https://www.wig.or.at/foerderungen/projektfoerderung" target="_blank" rel="noopener">WiG — Projektförderung</a>
+      <a href="https://www.bundeskanzleramt.gv.at/agenda/integration/projektfoerderung/foerderschwerpunkte/allgemein.html" target="_blank" rel="noopener">BKA — Förderschwerpunkte Integration</a>
+      <a href="https://www.bundeskanzleramt.gv.at/agenda/integration/projektfoerderung/asyl-migrations-und-integrationsfonds.html" target="_blank" rel="noopener">BKA — Asyl-, Migrations- und Integrationsfonds (AMIF)</a>
+      <a href="https://www.bundeskanzleramt.gv.at/agenda/integration/projektfoerderung/asyl-migrations-und-integrationsfonds/aufruf-2027-2028.html" target="_blank" rel="noopener">AMIF — Aufruf 2027/2028 (Nachlese)</a>
+      <a href="https://www.bundeskanzleramt.gv.at/agenda/familie/begleitung-beratung-hilfe/elternbildung-erziehungsfragen/foerderungen.html" target="_blank" rel="noopener">BKA — Elternbildungsförderung</a>
+      <a href="https://www.eltern-bildung.at/hilfreiche-links/foerderungen/" target="_blank" rel="noopener">eltern-bildung.at — Förderungen</a>
+      <a href="https://www.freiwilligenweb.at/freiwilliges-engagement/anerkennungsfonds/" target="_blank" rel="noopener">Anerkennungsfonds für freiwilliges Engagement</a>
+      <a href="https://www.freiwilligenweb.at/" target="_blank" rel="noopener">Freiwilligenweb (Sozialministerium)</a>
+      <a href="https://www.integrationsfonds.at/themen/foerderungen/" target="_blank" rel="noopener">ÖIF — Förderungen</a>
+      <a href="https://www.integrationsfonds.at/sprachfoerderung/" target="_blank" rel="noopener">ÖIF — Sprachförderung</a>
+      <a href="https://www.integrationsfonds.at/stipendium/integrationspreis/" target="_blank" rel="noopener">Österreichischer Integrationspreis 2026</a>
+      <a href="https://solidaritaetskorps.oead.at/" target="_blank" rel="noopener">Europäisches Solidaritätskorps (OeAD)</a>
+      <a href="https://solidaritaetskorps.oead.at/qualitaetssiegel" target="_blank" rel="noopener">ESK — Qualitätssiegel</a>
+      <a href="https://erasmusplus.oead.at/de/erwachsenenbildung" target="_blank" rel="noopener">Erasmus+ Erwachsenenbildung (OeAD)</a>
+      <a href="https://erasmusplus.oead.at/de/schulbildung/kleinere-partnerschaften" target="_blank" rel="noopener">Erasmus+ KA210 Kleinere Partnerschaften</a>
+      <a href="https://www.megabildung.at/" target="_blank" rel="noopener">MEGA Bildungsstiftung</a>
+      <a href="http://sinn-stifter.org/" target="_blank" rel="noopener">Sinnstifter (Stiftungsverbund)</a>
+      <a href="https://innovationsstiftung-bildung.at/de/" target="_blank" rel="noopener">Innovationsstiftung für Bildung</a>
+      <a href="https://www.sozialmarie.org/de" target="_blank" rel="noopener">SozialMarie — Preis für soziale Innovation</a>
+      <a href="https://www.sozialmarie.org/de/kriterien-fur-soziale-innovation" target="_blank" rel="noopener">SozialMarie — Innovationskriterien</a>
+      <a href="https://www.bankaustria.at/ueber-uns-verantwortung-soziales-sozialpreis.jsp" target="_blank" rel="noopener">Bank Austria Sozialpreis</a>
+      <a href="https://lichtinsdunkel.org/ich-brauche-hilfe/unterstuetzung-fuer-vereine-und-organisationen/" target="_blank" rel="noopener">Licht ins Dunkel — Unterstützung für Vereine</a>
+      <a href="https://austria.socialimpactaward.net/" target="_blank" rel="noopener">Social Impact Award Österreich</a>
+      <a href="https://www.respekt.net/projekte-einreichen/projekt-einreichen-information/" target="_blank" rel="noopener">respekt.net — Projekt einreichen</a>
+      <a href="https://www.stifter-helfen.at/ueber_uns/ueber_stifter_helfen_at" target="_blank" rel="noopener">stifter-helfen.at — IT für Non-Profits</a>
+      <a href="https://www.bmf.gv.at/themen/steuern/spenden-gemeinnuetzigkeit/spendenbeguenstigung-neu.html" target="_blank" rel="noopener">BMF — Spendenbegünstigung neu (§ 4a EStG)</a>
+      <a href="https://www.buchstart.at/" target="_blank" rel="noopener">Buchstart Österreich</a>
+      <a href="https://www.bvoe.at/news/lesefoerderung" target="_blank" rel="noopener">Büchereiverband Österreichs — Leseförderung</a>
+      <a href="https://www.wien.gv.at/zusammenleben/lesepaten-gesucht" target="_blank" rel="noopener">Stadt Wien — Mehrsprachige Lesepat:innen</a>
+      <a href="https://www.zivildienst.gv.at/einrichtungen/einrichtung-werden.html" target="_blank" rel="noopener">Zivildienst — Einrichtung werden</a>
+      <a href="https://www.wien.gv.at/finanzen/foerderungen-transparenz/" target="_blank" rel="noopener">Stadt Wien — Fördertransparenz &amp; Transparenzdatenbank</a>
+      <a href="https://transparenzportal.gv.at/" target="_blank" rel="noopener">Transparenzportal des Bundes</a>
+      <a href="https://www.fundraising.at/know-how/stiftungsfundraising/" target="_blank" rel="noopener">Fundraising Verband Austria — Stiftungsfundraising</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Erstellt am 28. Juli 2026 · Lokale Übersicht, keine Rechts- oder Steuerberatung. Fördersummen, Fristen und Schwerpunkte werden jährlich neu festgelegt — bitte vor jeder Einreichung auf der verlinkten Originalseite verifizieren.
+  </div>
+</footer>
+
+<script>
+const DATA = [
+  /* ---------------- STADT WIEN ---------------- */
+  {
+    n:"Integrations-Kleinprojekte bis € 5.000", o:"Stadt Wien — MA 17 Integration und Diversität", k:"wien",
+    geld:"bis € 5.000", frist:"15.1. · 15.3. · 15.5. · 15.9.", fristTyp:"open", fit:"mittel",
+    was:"Projekte, Maßnahmen und Initiativen zu interkultureller Sensibilität sowie Niederlassungs- und Integrationsbegleitung von Zuwander:innen. Bevorzugt werden hoher Innovationsgehalt und partizipative Einbindung verschiedener Akteur:innen.",
+    auf:[
+      "Nur gemeinnützige juristische Personen (Verein, gemeinnütziges Unternehmen)",
+      "Projektdauer max. 12 Monate, innerhalb eines Kalenderjahres",
+      "Vier fixe Einreichtermine pro Jahr; Online-Antrag über den Formularserver der Stadt",
+      "Beilagen: Einverständniserklärung zu den Förderrichtlinien, Finanzplan (XLSX), Statuten, Ausweiskopie der vertretungsbefugten Person, detaillierte Projektbeschreibung inkl. Eigenleistung",
+      "Neuer Antrag nur möglich, wenn das Vorjahresprojekt positiv abgeschlossen und abgerechnet wurde",
+      "Bewertung durch ein Fachgremium nach Punktesystem"
+    ],
+    tipp:"<b>Euer Termin ist der 15. Jänner 2027</b>, nicht der 15.9.2026 — MA 17 fördert kalenderjahrbezogen, das Projekt muss innerhalb von 2027 beginnen und enden. Eure Besuchsphase April–August passt exakt. Zum Schwerpunkt: Er liegt 2025/26 auf 14- bis 25-Jährigen, eure Kernzielgruppe ist 2–8. Dreht die Erzählung auf <b>junge Erwachsene, die ihr als Vorleser:innen ausbildet und begleitet</b> (Engagement, politische Bildung, Zugehörigkeit), und bindet ältere Geschwister aktiv ein.",
+    url:"https://www.wien.gv.at/amtswege/foerderungen-integrationskleinprojekte-bis-5000-euro"
+  },
+  {
+    n:"Integrations-Großprojekte ab € 5.000", o:"Stadt Wien — MA 17", k:"wien",
+    geld:"ab € 5.000", frist:"kalenderjahrbezogen", fristTyp:"open", fit:"hoch",
+    was:"Einzelförderung für ein konkretes Projekt oder Gesamtförderung für die Tätigkeit der Organisation. Der realistischste Weg zu einer wiederkehrenden Basisfinanzierung in Wien.",
+    auf:[
+      "Gemeinnützige juristische Person",
+      "Zwingend: Wien-Bezug und öffentliches Interesse (Gemeinwohl bzw. Ansehen der Stadt)",
+      "Wahl zwischen Einzelförderung und Gesamtförderung im Antrag",
+      "Beilagen: unterfertigte Einverständniserklärung, Einnahmen-Ausgaben-Rechnung (Excel), Projektbeschreibung, statistische Daten, Statuten, Ausweiskopie",
+      "Abwicklung kalenderjahrbezogen — Projekt muss im selben Jahr abgeschlossen werden"
+    ],
+    tipp:"Vor dem Erstantrag telefonisch bei der MA 17 vorfühlen (+43 1 4000-81510). Die Referent:innen sagen offen, ob die Zielgruppe zum aktuellen Schwerpunkt passt — das erspart eine formale Ablehnung.",
+    url:"https://www.wien.gv.at/amtshelfer/dokumente/aufenthalt/integration/foerderungen/integrationsgrossprojekte.html"
+  },
+  {
+    n:"Kleinprojektförderung außerschulische Kinder- und Jugendarbeit", o:"Stadt Wien — MA 13 Bildung und Jugend", k:"wien",
+    geld:"bis € 5.000", frist:"laufend, mind. 8 Wochen vorher", fristTyp:"open", fit:"hoch",
+    was:"Fördert Projekte im Bereich der außerschulischen Bildung von Kindern und Jugendlichen sowie der Erwachsenenbildung. Inhaltlich der natürlichste Topf für ein Vorleseprojekt in Wien.",
+    auf:[
+      "Nur gemeinnützige, nicht gewinnorientierte juristische Personen",
+      "Vorhaben muss im öffentlichen Interesse liegen und Wien-Bezug haben",
+      "Antrag mindestens 8 Wochen vor Projektbeginn, ausschließlich online",
+      "Erstantragsteller:innen: vorab per E-Mail an jugend@ma13.wien.gv.at melden",
+      "Zustimmung zu den Förderrichtlinien der MA 13 bei Antragstellung",
+      "Beilagen: Finanzplan, Sachvorhaben, Statuten, Vereinsregisterauszug, Vermögensübersicht"
+    ],
+    tipp:"<b>Einreichen bis Anfang November 2026</b>, wenn die Aufbauphase im Jänner startet — die 8-Wochen-Regel ist hart. Nutzt die Vorab-Mail wirklich und klärt dabei gleich, ob euer Antrag aus dem Budget 2027 bedient wird. Legt den Antrag auf Schulung und Supervision der 30 Freiwilligen; das sind saubere, abgrenzbare Kosten, die kein anderer Topf doppelt fördert.",
+    url:"https://www.wien.gv.at/amtshelfer/finanzielles/foerderungen/bildung/projekte/foerderungklein.html"
+  },
+  {
+    n:"Wienweite bzw. spezielle Angebote", o:"Stadt Wien — MA 13", k:"wien",
+    geld:"über € 5.000", frist:"kalenderjahrbezogen", fristTyp:"warn", fit:"mittel",
+    was:"Größere Förderschiene für wienweite Angebote in Bildung, Spiel, Kultur, Freizeit und Medien — der Weg zur Skalierung über mehrere Bezirke.",
+    auf:[
+      "Gemeinnützige juristische Person mit wienweitem oder speziellem Angebot",
+      "Kalenderjahrbezogen: Maßnahme beginnt und endet im selben Jahr",
+      "Beilagen: Finanzplan/Finanzbericht (Excel), Sachvorhaben/Sachbericht (Word), Statuten, Vereinsregisterauszug, Vermögensübersicht bzw. Jahresabschluss, ID Austria oder Einverständniserklärung",
+      "Auszahlung in voller Höhe, ab € 500.000 in Raten"
+    ],
+    tipp:"<b>Achtung:</b> Die MA 13 weist derzeit darauf hin, dass für das laufende Jahr keine Budgetmittel mehr verfügbar sind — Anträge können momentan nicht positiv erledigt werden. Plant für das nächste Kalenderjahr und reicht früh ein.",
+    url:"https://www.wien.gv.at/amtswege/wienweite-spezielle-angebote-foerderungsantrag-foerderabrechnung"
+  },
+  {
+    n:"Dezentrale Bezirksförderung", o:"Bezirksvorstehungen der 23 Wiener Bezirke", k:"wien",
+    geld:"meist € 300 – 3.000", frist:"mind. 6 Wochen vor der Veranstaltung", fristTyp:"open", fit:"hoch",
+    was:"Aus dem Bezirksbudget finanzierte Zuschüsse für Grätzl- und interkulturelle Projekte mit Bezug zum jeweiligen Bezirk. Schnell, unbürokratisch, gut wiederholbar.",
+    auf:[
+      "Antragsberechtigt: Vereine, Schulen, Religionsgemeinschaften, Institutionen mit Sitz in Wien sowie natürliche Personen mit Hauptwohnsitz in Wien",
+      "Online-Formular an die zuständige Bezirksvorstehung, spätestens 6 Wochen vor der Veranstaltung",
+      "Entscheidung durch die Kulturkommission des Bezirks",
+      "Vorab-Kontakt mit der Kulturkommission wird ausdrücklich empfohlen"
+    ],
+    tipp:"Reicht in <b>mehreren</b> Bezirken parallel ein — jeder Bezirk hat ein eigenes Budget. Vorlesefeste, Bücherflohmärkte oder Abschlussveranstaltungen im Grätzl sind genau das Format, das Bezirke gern finanzieren. Ideal zur Freiwilligen-Rekrutierung.",
+    url:"https://www.wien.gv.at/amtshelfer/kultur/projekte/subventionen/bezirk.html"
+  },
+  {
+    n:"Grätzlmarie / Nachbarschatz", o:"WieNeu+ &amp; Gebietsbetreuung Stadterneuerung (GB*)", k:"wien",
+    geld:"bis € 30.000 (Grätzlmarie)", frist:"jährliche Calls", fristTyp:"warn", fit:"mittel",
+    was:"Fördert Ideen, mit denen Bewohner:innen ihr Wohnumfeld sozial und ökologisch verbessern. Nur in den definierten WieNeu+-Programmgebieten bzw. GB*-Zuständigkeitsbereichen.",
+    auf:[
+      "Einzelpersonen, Vereine, Organisationen, Hausgemeinschaften mit Bezug zum Programmgebiet (wohnen oder arbeiten dort)",
+      "Projekt muss positive soziale und ökologische Wirkung haben und der Allgemeinheit zugutekommen",
+      "Vor der Einreichung ist ein telefonisches oder persönliches Beratungsgespräch mit dem GB*-Team verpflichtend",
+      "Gebietsgebunden — prüft zuerst, ob eure Zielbezirke im Programmgebiet liegen"
+    ],
+    tipp:"Prüft die Gebietskulisse, bevor ihr Arbeit investiert. Wenn ein Zielbezirk drin ist, ist das mit bis zu € 30.000 einer der größten niederschwelligen Töpfe Wiens — und die GB*-Teams helfen aktiv beim Formulieren.",
+    url:"https://wieneuplus.wien.gv.at/graetzlmarie"
+  },
+  {
+    n:"Wiener Bildungschancen (Anbieterpool)", o:"Stadt Wien / WIENXTRA", k:"wien",
+    geld:"€ 655 Basisbudget je Klasse", frist:"Bewerbung als Anbieter laufend", fristTyp:"open", fit:"mittel",
+    was:"Keine klassische Förderung, sondern ein Einnahmekanal: Wiener Pflichtschulen haben ein eigenes Budget (gesamt ca. € 4,4 Mio) und kaufen damit geprüfte externe Bildungsangebote ein. Rund 1.000 Angebote sind gelistet.",
+    auf:[
+      "Aufnahme in den Anbieterpool nur bei Erfüllung strenger Qualitätskriterien",
+      "Verpflichtendes Kinderschutzkonzept",
+      "Transparenz über pädagogische Haltung, Bildungsauftrag und Qualitätssicherung",
+      "Angebot muss schulisch nutzbar sein (Workshop-Format)"
+    ],
+    tipp:"Euer Hausbesuchs-Format passt nicht direkt. Aber ein abgeleitetes Schulformat — z. B. „Mehrsprachige Vorlesestunde" oder ein Eltern-Workshop „Vorlesen zu Hause" — schafft eine <b>wiederkehrende, förderunabhängige Einnahmequelle</b> und liefert gleichzeitig den Zugang zu Familien für das Hauptprogramm.",
+    url:"https://bildungschancen.wien/"
+  },
+  {
+    n:"Projektförderung Gesundheitsförderung", o:"WiG — Wiener Gesundheitsförderung gGmbH", k:"wien",
+    geld:"projektabhängig", frist:"laufend", fristTyp:"open", fit:"niedrig",
+    was:"Fördert Projekte mit umfassendem Gesundheitsbegriff, die gesunde Lebenswelten und Chancengleichheit für Gesundheit in Wien schaffen — inklusive seelischer Gesundheit.",
+    auf:[
+      "Umfassender Gesundheitsbegriff muss dem Projekt zugrunde liegen",
+      "Zielgruppen- und Settingbezug in Wien",
+      "Vorab-Beratung durch die WiG üblich"
+    ],
+    tipp:"Randchance, aber nicht null: Argumentierbar über <b>psychosoziale Gesundheit und Isolation von Müttern mit kleinen Kindern</b> und über gesundheitliche Chancengleichheit. Nur verfolgen, wenn ihr diesen Aspekt wirklich im Programm abbildet.",
+    url:"https://www.wig.or.at/foerderungen/projektfoerderung"
+  },
+
+  /* ---------------- BUND ---------------- */
+  {
+    n:"Anerkennungsfonds für freiwilliges Engagement", o:"Sozialministerium (BMASGPK)", k:"bund",
+    geld:"bis € 30.000 für Organisationen", frist:"keine Frist — laufend", fristTyp:"open", fit:"hoch",
+    was:"Zuwendungen für besonderes und außergewöhnliches freiwilliges Engagement, gesetzlich verankert im Freiwilligengesetz. Organisationen bis € 30.000, Einzelpersonen bis € 1.000.",
+    auf:[
+      "Laufende Einreichung, quartalsweise Bearbeitung — kein Stichtag",
+      "Projektdauer bis zu zwei Jahre; bereits begonnene Projekte sind förderfähig",
+      "Förderbar: Personal- und Sachkosten, projektbezogene Öffentlichkeitsarbeit und Projektmanagement, Overhead bis 5 % der Förderung",
+      "NICHT förderbar: Freiwilligenpauschalen, reine Anschaffungen oder Renovierungen ohne Projektbezug, allgemeine Verwaltungskosten",
+      "Antrag per E-Mail an anerkennungsfonds@sozialministerium.gv.at oder postalisch (Stubenring 1, 1010 Wien) mit dem offiziellen Formular",
+      "Abrechnung: Sachbericht, Belegliste, Zahlungsnachweise; ab € 10.000 sämtliche Belege inkl. Lohnkonten",
+      "Kein Rechtsanspruch auf Förderung"
+    ],
+    tipp:"<b>Euer wichtigster Antrag — einreichen im September 2026.</b> Der Fonds existiert genau für das, was ihr tut: organisiertes, qualifiziertes Ehrenamt. Entscheidend für euch: Die Projektlaufzeit von bis zu zwei Jahren erlaubt es, <b>Aufbauphase Jän–Mär und Betrieb Apr–Dez 2027 in einem einzigen Antrag</b> zu bündeln — kein anderer Topf deckt die Vorbereitungsphase. Beantragt € 18.000–20.000 für Koordination, Schulung, Supervision, Versicherung und Freiwilligenwerbung. Quartalsweise Bearbeitung: September eingereicht heißt realistisch Entscheidung im vierten Quartal, Geld zum Jännerstart.",
+    url:"https://www.freiwilligenweb.at/freiwilliges-engagement/anerkennungsfonds/"
+  },
+  {
+    n:"Elternbildungsförderung aus dem FLAF", o:"Bundeskanzleramt — Sektion Familie und Jugend", k:"bund",
+    geld:"nach Richtlinie, jährlich", frist:"15. Oktober (jährlich)", fristTyp:"warn", fit:"hoch",
+    was:"Seit 2000 stehen jährlich Mittel aus dem Familienlastenausgleichsfonds für Elternbildungsangebote bereit. Ziel: niederschwellige, qualitativ hochwertige Angebote, die Eltern aller sozialen Schichten erreichen.",
+    auf:[
+      "Nur gemeinnützige Einrichtungen als Träger",
+      "Veranstaltungen müssen den gesetzlichen Richtlinien zur Elternbildung entsprechen (u. a. Qualifikation der Referent:innen, Formate, Dokumentation)",
+      "Antrag jährlich bis 15. Oktober",
+      "Seit 1.7.2024 ausschließlich online über das Transparenzportal mit rechtsgültiger elektronischer Signatur",
+      "Alle Zeichnungsberechtigten benötigen ID Austria",
+      "Abrechnung nach eigener Abrechnungsanleitung des BKA"
+    ],
+    tipp:"Passt hervorragend zu eurem Familienansatz — <b>wenn</b> ihr ein eigenes Elternbildungsformat definiert: Elternabende „Wie lese ich meinem Kind vor?", mehrsprachige Elterngruppen, Anleitung zum dialogischen Lesen. Damit wird aus einem Kinder- ein Familienprojekt und erschließt einen völlig eigenen Bundestopf.",
+    url:"https://www.bundeskanzleramt.gv.at/agenda/familie/begleitung-beratung-hilfe/elternbildung-erziehungsfragen/foerderungen.html"
+  },
+  {
+    n:"Integrationsförderung Bund — Schwerpunkt Bildung", o:"Bundeskanzleramt, Abt. II/3 (nationale Mittel + AMIF)", k:"bund",
+    geld:"€ 8,68 Mio p. a. im Bereich Bildung", frist:"nächster Aufruf vsl. Frühjahr 2028", fristTyp:"closed", fit:"hoch",
+    was:"Der inhaltlich am besten passende Topf Österreichs: Schwerpunkt „Bildung" mit gezielter Unterstützung für Kinder und Jugendliche mit Migrationshintergrund inklusive Elterneinbindung. 2026 werden insgesamt 132 Projekte mit € 23,18 Mio gefördert, davon 35 Projekte im Bereich Bildung.",
+    auf:[
+      "Antragsberechtigt: private und öffentliche Organisationen, keine Privatpersonen",
+      "Einreichung ausschließlich über das elektronische System BMI-ATES — E-Mail-Einreichungen werden nicht akzeptiert",
+      "Erforderlich: Projektzeitplan, Statuten, bei Partnerschaften Solidarhaftungserklärung und Unterlagen der Partnerorganisationen",
+      "Mehrjährige Projektlaufzeiten (Zweijahresperioden)",
+      "Der Aufruf für 2027/28 endete am 12. Mai 2026 — derzeit keine Einreichung möglich"
+    ],
+    tipp:"Der Zug für 2027/28 ist abgefahren, der nächste Aufruf betrifft 2029/30. Nutzt die Zeit strategisch: <b>zwei Jahre saubere Wirkungsdaten sammeln</b>, Referenzen von Bezirk und MA 17 aufbauen und jetzt schon Kontakt zu foerderungen.integration@bka.gv.at aufnehmen. Wer beim Aufruf zum ersten Mal auftaucht, hat kaum Chancen.",
+    url:"https://www.bundeskanzleramt.gv.at/agenda/integration/projektfoerderung/foerderschwerpunkte/allgemein.html"
+  },
+  {
+    n:"Österreichischer Integrationspreis 2026", o:"Österreichischer Integrationsfonds (ÖIF)", k:"bund preis",
+    geld:"€ 3.000 je Kategorie", frist:"für euch: September 2027", fristTyp:"warn", fit:"mittel",
+    was:"Preis für herausragende Integrationsprojekte in fünf Kategorien: Frauen, Arbeit und Wirtschaft, Jugend, Sport sowie Engagement gegen Antisemitismus und Extremismus. Auswahl durch eine unabhängige Fachjury.",
+    auf:[
+      "Einreichende Person mindestens 18 Jahre alt und aktiv am Projekt beteiligt",
+      "Zulässig: Vereine, ehrenamtliche Organisationen, Schulen, Gemeinden, Unternehmen, Privatpersonen",
+      "Projekt muss zum Zeitpunkt der Einreichung bereits laufen",
+      "Einreichung ausschließlich online über www.integrationspreis.at — keine Post, kein Telefon"
+    ],
+    tipp:"<b>Das Fenster 2026 (bis 13.9.) müsst ihr auslassen</b> — der Preis verlangt ein bereits laufendes Projekt, eure Besuche starten erst im April 2027. Zielt auf September 2027: Dann läuft das Programm seit fünf Monaten. Kleines Geld, aber hoher Nutzen: ÖIF-Sichtbarkeit, Jury-Kontakte und eine Referenz, die in jedem späteren AMIF- oder MA-17-Antrag zählt. Kategorie „Jugend" wählen und die jungen Vorleser:innen in den Mittelpunkt stellen.",
+    url:"https://www.integrationsfonds.at/stipendium/integrationspreis/"
+  },
+  {
+    n:"Sprachförderung &amp; Materialien für Kinder", o:"Österreichischer Integrationsfonds (ÖIF)", k:"bund sach",
+    geld:"Sachleistungen, kostenlose Materialien", frist:"laufend", fristTyp:"open", fit:"hoch",
+    was:"Der ÖIF fördert gezielt die frühe Sprachförderung von Kindern und stellt Praxismaterialien für die elementarpädagogische Arbeit bereit — über das Sprachportal auch mehrsprachig und kostenfrei.",
+    auf:[
+      "Materialien überwiegend frei zugänglich, teils Registrierung nötig",
+      "Direkte Projektförderung läuft über die Deutschkursförderung bzw. das Programm „Startpaket Deutsch &amp; Integration“ — vorrangig für Asyl- und subsidiär Schutzberechtigte sowie Vertriebene aus der Ukraine",
+      "Für Vereine mit Kursbetrieb: eigene Kursförderschienen prüfen"
+    ],
+    tipp:"Nutzt die ÖIF-Materialien als <b>Ausstattung eurer Vorleser:innen</b> — das senkt reale Kosten und wirkt im Antrag wie fachliche Anschlussfähigkeit. Zusätzlich: Kontakt zur ÖIF-Initiative „Zusammen:Österreich" für Netzwerk und Sichtbarkeit.",
+    url:"https://www.integrationsfonds.at/sprachfoerderung/"
+  },
+  {
+    n:"Zivildienst-Einsatzstelle werden", o:"Zivildienstserviceagentur (BKA)", k:"bund sach",
+    geld:"Personalressource statt Geld", frist:"laufend", fristTyp:"open", fit:"mittel",
+    was:"Anerkennung als Zivildiensteinrichtung verschafft dauerhaft Arbeitskraft für Koordination, Fahrten, Materialverwaltung und Begleitung — bei stark reduzierten Kosten für den Träger.",
+    auf:[
+      "Rechtsträger muss eine nicht auf Gewinn gerichtete juristische Person mit Sitz oder Geschäftsleitung in Österreich sein",
+      "Antrag auf Anerkennung der Einrichtung beim Landeshauptmann",
+      "Vorgesetzte müssen den E-Learning-Test für Vorgesetzte positiv absolvieren",
+      "Einhaltung sämtlicher Pflichten nach dem Zivildienstgesetz; Widerruf bei Verstößen"
+    ],
+    tipp:"Mittelfristiger Hebel: Die laufenden Koordinationskosten sind bei euch der eigentliche Engpass — nicht die Bücher. Prüft parallel auch das <b>Freiwillige Sozialjahr</b> als Trägerorganisation.",
+    url:"https://www.zivildienst.gv.at/einrichtungen/einrichtung-werden.html"
+  },
+
+  /* ---------------- EU ---------------- */
+  {
+    n:"AMIF — Asyl-, Migrations- und Integrationsfonds", o:"EU / BKA Abt. II/3 &amp; ÖIF", k:"eu",
+    geld:"sechsstellig möglich", frist:"Aufruf 2027/28 am 12.5.2026 geschlossen", fristTyp:"closed", fit:"hoch",
+    was:"Das größte europäische Instrument für Integrationsmaßnahmen in Österreich, national abgewickelt. Sieben Maßnahmenbereiche, darunter Spracherwerb und Bildungsteilhabe.",
+    auf:[
+      "Nur Organisationen, keine Privatpersonen",
+      "Einreichung über BMI-ATES, formgebunden und fristgebunden",
+      "Nationale Kofinanzierung erforderlich — sichert vorab Zusagen von Stadt/Bund",
+      "Umfangreiche Berichts-, Prüf- und Belegpflichten über die gesamte mehrjährige Laufzeit"
+    ],
+    tipp:"Für einen jungen Verein noch zu schwer. Realistisch ist der Einstieg als <b>Projektpartner einer etablierten Trägerorganisation</b> (Caritas, Diakonie, Volkshilfe, Wiener Hilfswerk, Interface Wien). Sprecht diese jetzt an — Partnerschaften werden lange vor dem Aufruf gebildet.",
+    url:"https://www.bundeskanzleramt.gv.at/agenda/integration/projektfoerderung/asyl-migrations-und-integrationsfonds.html"
+  },
+  {
+    n:"Europäisches Solidaritätskorps — Freiwilligenprojekte", o:"OeAD (Nationalagentur)", k:"eu",
+    geld:"€ 3 Mio Landesbudget p. a.", frist:"Runde 2026: 18.2.; Quality Label jederzeit", fristTyp:"warn", fit:"hoch",
+    was:"Finanziert die Aufnahme junger Freiwilliger aus ganz Europa (Reise, Unterkunft, Taschengeld, Sprachkurs, organisatorische Unterstützung). Für ein Vorleseprojekt eine Möglichkeit, mehrsprachige Vorleser:innen zu gewinnen.",
+    auf:[
+      "Zwingend: gültiges Qualitätssiegel (Quality Label) des OeAD — jederzeit beantragbar, aber mit Vorlaufzeit",
+      "Nachweis geeigneter Betreuungs-, Sicherheits- und Lernstrukturen für junge Freiwillige",
+      "Förderantrag erst nach erteiltem Label möglich",
+      "Alternative ohne Label: Solidaritätsprojekte — Kernteam von mind. 5 in Österreich lebenden Personen, € 630 pro Monat"
+    ],
+    tipp:"Zwei Wege: kurzfristig ein <b>Solidaritätsprojekt</b> (5 junge Menschen, € 630/Monat, ohne Label) — ideal für einen Pilotzyklus. Langfristig das <b>Quality Label</b> beantragen; dann kommen mehrsprachige Freiwillige mit EU-Finanzierung zu euch.",
+    url:"https://solidaritaetskorps.oead.at/qualitaetssiegel"
+  },
+  {
+    n:"Erasmus+ KA210 — Kleinere Partnerschaften", o:"OeAD (Erwachsenenbildung / Schulbildung)", k:"eu",
+    geld:"Pauschalen € 30.000 / € 60.000", frist:"jährliche Runden (meist Frühjahr)", fristTyp:"warn", fit:"mittel",
+    was:"Bewusst für kleine Akteure und Neueinsteiger konzipiert. Fördert die grenzüberschreitende Zusammenarbeit mit Partnerorganisationen aus anderen Programmländern — inklusive Methodentransfer und Handbuchentwicklung.",
+    auf:[
+      "Antragsberechtigt sind ausschließlich juristische Personen, keine Einzelpersonen",
+      "Die koordinierende Einrichtung beantragt im Namen aller Partner bei der nationalen Agentur",
+      "Mindestens eine Partnerorganisation aus einem anderen Programmland erforderlich",
+      "Abrechnung über Pauschalbeträge (Lump Sums) — deutlich einfacher als bei anderen EU-Programmen"
+    ],
+    tipp:"Sinnvoll ab Jahr 2–3. Deutsche Vorlese-Netzwerke wie <b>MENTOR – Die Leselernhelfer</b> (17.500 Mentor:innen) sind naheliegende Partner: ihr holt euch erprobtes Schulungs- und Qualitätsmanagement-Know-how und finanziert damit gleichzeitig eure Handbuch- und Methodenentwicklung.",
+    url:"https://erasmusplus.oead.at/de/erwachsenenbildung"
+  },
+
+  /* ---------------- STIFTUNGEN ---------------- */
+  {
+    n:"MEGA Bildungsstiftung", o:"B&amp;C Privatstiftung + Berndorf Privatstiftung", k:"stiftung",
+    geld:"3 × € 200.000 + 3 × € 80.000", frist:"jährliche Ausschreibung", fristTyp:"warn", fit:"hoch",
+    was:"Vergibt jährlich rund € 1 Mio an sechs Bildungsprojekte. Schwerpunkte: „Chancen-Fairness" und „Wirtschaftsbildung". Ausdrücklich auch außerschulische Initiativen, Vereine und NGOs.",
+    auf:[
+      "Bestehendes, bereits laufendes Bildungsprojekt (keine reinen Ideen)",
+      "Österreichweiter Bezug bzw. Skalierungspotenzial",
+      "Mehrstufiges Auswahlverfahren mit Finalrunde",
+      "Geförderte Projekte durchlaufen die MEGA Academy (Coaching gemeinsam mit der WU Wien)"
+    ],
+    tipp:"<b>Der potenziell größte private Einzelbetrag für euch.</b> Bewerbt euch in einer „Chancen-Fairness"-Runde. Entscheidend ist Skalierbarkeit: zeigt Handbuch, Schulungscurriculum und einen konkreten Rollout-Plan über Bezirke oder Bundesländer. Das Coaching ist fast so wertvoll wie das Geld.",
+    url:"https://www.megabildung.at/"
+  },
+  {
+    n:"Sinnstifter — Verbund von sechs Stiftungen", o:"Essl, ERSTE, Humer, Katharina Turnauer, Schweighofer, Unruhe", k:"stiftung",
+    geld:"individuell verhandelt", frist:"kein offener Call", fristTyp:"open", fit:"hoch",
+    was:"2010 gegründeter Zusammenschluss von sechs österreichischen Privatstiftungen, die gemeinsam Sozial- und Bildungsprojekte in Österreich entwickeln, fördern und umsetzen — bewusst unbürokratisch.",
+    auf:[
+      "Kein öffentliches Antragsformular — Zugang über direkte Ansprache und Empfehlung",
+      "Empfängerorganisation muss gemeinnützig sein",
+      "Erwartet wird ein durchdachtes, überprüfbares Konzept mit klarer Wirkungslogik"
+    ],
+    tipp:"Stiftungsfundraising funktioniert über Beziehungen, nicht über Formulare. Schreibt eine <b>zweiseitige Kurzvorstellung</b> und bittet um ein 20-Minuten-Gespräch. Nutzt Veranstaltungen des Fundraising Verbands Austria, um die Stiftungsverantwortlichen persönlich zu treffen — das ist der eigentliche Türöffner.",
+    url:"http://sinn-stifter.org/"
+  },
+  {
+    n:"ERSTE Stiftung", o:"ERSTE Stiftung (größte Sparkassen-Privatstiftung Österreichs)", k:"stiftung",
+    geld:"projektabhängig", frist:"programmabhängig", fristTyp:"open", fit:"mittel",
+    was:"Fördert soziale Teilhabe und zivilgesellschaftliches Engagement, Demokratieprojekte sowie ausdrücklich auch die Organisationsentwicklung von NGOs.",
+    auf:[
+      "Gemeinnützigkeit vorausgesetzt",
+      "Fokus auf Österreich sowie Zentral- und Südosteuropa",
+      "Förderlinien wechseln — aktuelle Programme prüfen"
+    ],
+    tipp:"Interessant ist hier weniger die Projekt- als die <b>Organisationsentwicklungs-Förderung</b>: genau das, was ein junger Verein braucht, um von 25 auf 200 Familien zu wachsen (Strukturen, Freiwilligenmanagement, Wirkungsmessung).",
+    url:"https://www.erstestiftung.org/"
+  },
+  {
+    n:"Innovationsstiftung für Bildung", o:"Bund + Co-Stiftungen (u. a. Sinnbildungsstiftung)", k:"stiftung",
+    geld:"je nach Call", frist:"periodische Calls", fristTyp:"warn", fit:"mittel",
+    was:"2017 gegründet, um Innovationskompetenz und Bildungsniveau in Österreich zu heben. Fördert innovative Bildungsprojekte und die Kooperation öffentlicher und privater Akteure, auch außerschulisch.",
+    auf:[
+      "Calls sind thematisch eng zugeschnitten — nur bei Passung einreichen",
+      "Häufig Kooperationsprojekte mit Bildungseinrichtungen erwünscht",
+      "Förderungen erscheinen im Transparenzportal"
+    ],
+    tipp:"Setzt die Förderlandkarte der Stiftung auf eure Watchlist und abonniert den Newsletter. Wenn ein Call zu früher Sprachbildung oder Chancengerechtigkeit kommt, seid ihr eine sehr gute Passung — aber die Calls sind kurzfristig.",
+    url:"https://innovationsstiftung-bildung.at/de/"
+  },
+  {
+    n:"Licht ins Dunkel — Projektansuchen", o:"Licht ins Dunkel / ORF", k:"stiftung",
+    geld:"projektabhängig, ca. 500 Projekte p. a.", frist:"1.4. – 31.12. jährlich", fristTyp:"open", fit:"mittel",
+    was:"Fördert Teilhabe von Menschen mit Behinderungen sowie von psychosozial und sozioökonomisch benachteiligten Kindern, Jugendlichen und deren Familien — u. a. therapeutische und pädagogische Unterstützungsmaßnahmen und Ausstattung.",
+    auf:[
+      "Antragsberechtigt: Vereine, Organisationen, Glaubensgemeinschaften",
+      "Erforderlich: Durchführbarkeitsplan, Finanzierungsplan für die ersten drei Jahre, Zukunftsstrategie",
+      "Nur <b>ein</b> geförderter Antrag je Projektträger innerhalb von drei Jahren",
+      "Einreichfenster jeweils 1. April bis 31. Dezember"
+    ],
+    tipp:"Die Ein-Antrag-pro-drei-Jahre-Regel macht den Zeitpunkt entscheidend. Hebt euch diesen Antrag für einen <b>großen Sprung</b> auf — z. B. Erstausstattung plus Koordinationsstelle für den Rollout — statt ihn für Bücher zu verbrauchen. Argumentiert über sozioökonomisch benachteiligte Familien.",
+    url:"https://lichtinsdunkel.org/ich-brauche-hilfe/unterstuetzung-fuer-vereine-und-organisationen/"
+  },
+  {
+    n:"Service-Clubs: Rotary, Lions, Zonta, Soroptimist", o:"lokale Clubs in Wien", k:"stiftung",
+    geld:"typisch € 1.000 – 5.000", frist:"laufend, clubabhängig", fristTyp:"open", fit:"hoch",
+    was:"Wiener Clubs vergeben regelmäßig Zuschüsse an lokale gemeinnützige Projekte, oft mit Fokus auf Kinder, Bildung und Frauen. Entscheidung meist innerhalb weniger Wochen.",
+    auf:[
+      "Kein Formalverfahren — Zugang über persönliche Vorstellung im Club",
+      "Gemeinnützigkeit und saubere Mittelverwendung nachweisen",
+      "Oft für konkrete, greifbare Zwecke (Bücher, Material, Feste) statt Personalkosten"
+    ],
+    tipp:"Unterschätzt: Ein 20-Minuten-Vortrag bei einem Clubabend bringt oft schneller € 2.000 als ein dreimonatiger Förderantrag — und dazu Kontakte zu potenziellen Vorleser:innen und Vorstandsmitgliedern. Fragt gezielt nach Finanzierung <b>eines ganzen Familienzyklus</b> („Patenschaft").",
+    url:"https://www.fundraising.at/know-how/stiftungsfundraising/"
+  },
+
+  /* ---------------- PREISE ---------------- */
+  {
+    n:"SozialMarie — Preis für soziale Innovation", o:"Unruhe Privatstiftung", k:"preis",
+    geld:"€ 15.000 / 10.000 / 5.000 + 12 × € 2.000", frist:"für euch: Februar 2028", fristTyp:"warn", fit:"hoch",
+    was:"Europas ältester Preis für soziale Innovation, seit 2005 jährlich im Mai verliehen. Teilnahmeberechtigt sind Projekte aus Österreich, Ungarn, Tschechien, Kroatien, der Slowakei und Slowenien.",
+    auf:[
+      "Projekt muss zum Einreichzeitpunkt bereits ausreichend umgesetzt sein <b>und</b> noch laufen — abgeschlossene Projekte und reine Ideen werden nicht akzeptiert",
+      "Bewertung nach vier Innovationskriterien: Innovation in der Projektidee (Neuheit in der Sache oder am Ort), im Zugang zur Zielgruppe (Beteiligung, nachhaltiger Nutzen), in der Umsetzung (Wirkung, Effektivität) und in der Außenwirkung (Vernetzung, Beispielwirkung)"
+    ],
+    tipp:"<b>Für euch erst Februar 2028</b> — im Februar 2027 hättet ihr noch keinen einzigen Hausbesuch gemacht, und unfertige Projekte werden ausgeschlossen. Ein Jahr später habt ihr 30 abgeschlossene Begleitungen. Schreibt dann entlang der vier Kriterien: <b>Zugang zur Zielgruppe</b> ist euer stärkstes Argument — ihr geht in die Wohnungen, statt zu warten, dass Familien kommen. Genau das ist „Innovation am Ort".",
+    url:"https://www.sozialmarie.org/de/kriterien-fur-soziale-innovation"
+  },
+  {
+    n:"Bank Austria Sozialpreis", o:"UniCredit Bank Austria", k:"preis",
+    geld:"€ 90.000 gesamt · € 6.000 / 3.000 / 1.000 je Bundesland", frist:"April – Mai (2026: 22.4. – 11.5.)", fristTyp:"warn", fit:"hoch",
+    was:"Seit 17 Jahren. Eine regionale Expert:innenjury wählt je Bundesland drei Finalisten, die endgültige Reihung entscheidet ein öffentliches Online-Voting (2026: 6.7. – 3.9.).",
+    auf:[
+      "Teilnahmeberechtigt: gemeinnützige Initiativen, NGOs, Vereine, Trägereinrichtungen und engagierte Einzelpersonen aus Österreich",
+      "Bewerbung online über sozialpreis.bankaustria.at",
+      "Zweistufig: Jury-Vorauswahl, dann öffentliches Voting"
+    ],
+    tipp:"Das Publikumsvoting ist der Knackpunkt — es belohnt Projekte mit mobilisierbarer Community. Baut jetzt schon eure <b>Newsletter- und Social-Media-Liste</b> aus Freiwilligen, Familien und Unterstützer:innen auf; die zahlt sich hier direkt in Preisgeld aus.",
+    url:"https://www.bankaustria.at/ueber-uns-verantwortung-soziales-sozialpreis.jsp"
+  },
+  {
+    n:"Social Impact Award Österreich", o:"SIA / Impact Hub Vienna", k:"preis",
+    geld:"Preisgeld + Inkubation", frist:"jährlich, meist Frühjahr", fristTyp:"warn", fit:"mittel",
+    was:"Programm für junge Menschen mit Sozialunternehmen-Ideen: Workshops, Kompetenzaufbau, Mentoring und Preisgeld für die Weiterentwicklung.",
+    auf:[
+      "Richtet sich primär an junge Gründer:innen und frühe Projektphasen",
+      "Bewerbung über apply.socialimpactaward.net/austria",
+      "Teilnahme am Programm (Workshops, Coaching) wird erwartet"
+    ],
+    tipp:"Interessant, wenn im Vereinsteam junge Leute (bis ca. 30) aktiv sind. Der eigentliche Gewinn ist das Netzwerk im Impact Hub Vienna — dort sitzen die Leute, die euch später zu Stiftungen und Firmenpartnern weiterreichen.",
+    url:"https://austria.socialimpactaward.net/"
+  },
+
+  /* ---------------- EIGENMITTEL / SACHMITTEL ---------------- */
+  {
+    n:"Spendenbegünstigung nach § 4a EStG", o:"Finanzamt Österreich / BMF", k:"eigen",
+    geld:"indirekt: massiv höhere Spendenbereitschaft", frist:"laufend beantragbar", fristTyp:"open", fit:"hoch",
+    was:"Eintragung in die Liste der begünstigten Spendenempfänger. Spenden an euch werden dann steuerlich absetzbar — für Privatpersonen und Unternehmen. Der größte einzelne Fundraising-Hebel für einen österreichischen Verein.",
+    auf:[
+      "Steuernummer erforderlich; gemeinnützige oder mildtätige Tätigkeit laut gesetzeskonformen Statuten ohne Gewinnerzielungsabsicht",
+      "Der Verein muss bereits mindestens ein volles Wirtschaftsjahr (12 Monate) tätig gewesen sein — die frühere Dreijahresfrist wurde verkürzt",
+      "Verwaltungskosten dürfen höchstens 10 % der Spendeneinnahmen betragen",
+      "Zumindest interne Buchhaltung über Einnahmen und Ausgaben",
+      "Antrag zwingend über eine:n berufsmäßige:n Parteienvertreter:in (Steuerberatung) via FinanzOnline",
+      "Jährliche Meldung binnen 9 Monaten nach Ende des Rechnungs-/Wirtschaftsjahres — sonst Verlust der Begünstigung"
+    ],
+    tipp:"<b>Priorität nach dem ersten vollen Wirtschaftsjahr.</b> Ohne Spendenbegünstigung verliert ihr bei jedem Firmen- und Großspendengespräch das entscheidende Argument. Achtet ab sofort auf die 10 %-Verwaltungskostengrenze — das beeinflusst, wie ihr Kosten verbucht.",
+    url:"https://www.bmf.gv.at/themen/steuern/spenden-gemeinnuetzigkeit/spendenbeguenstigung-neu.html"
+  },
+  {
+    n:"respekt.net — Crowdfunding", o:"Respekt.net gemeinnützige GmbH", k:"eigen",
+    geld:"selbst gewähltes Ziel", frist:"laufend", fristTyp:"open", fit:"hoch",
+    was:"Österreichs größte Crowdfunding-Plattform für gemeinnützige Projekte, seit 2010, über 700 finanzierte Projekte und mehr als € 4 Mio Spendenvolumen.",
+    auf:[
+      "Projekt muss auf die Gestaltung politischer Prozesse und/oder sozialer Lebensbedingungen ausgerichtet sein und die Lebensrealität mehrerer Menschen beeinflussen",
+      "Nicht zulässig: marktwirtschaftlich-profitorientierte oder staatlich organisierte Vorhaben",
+      "Finanzierungsschwelle: mindestens 50 % des Ziels müssen erreicht werden, sonst keine Auszahlung",
+      "Abwicklungsgebühr wird zu Beginn transparent gemacht"
+    ],
+    tipp:"Setzt das Ziel bewusst niedrig (die 50 %-Schwelle ist hart) und startet mit einer vorbereiteten „warmen" Unterstützer:innenliste, die in den ersten 48 Stunden spendet. Crowdfunding erzeugt zusätzlich genau die <b>Eigenmittel</b>, die andere Fördergeber sehen wollen.",
+    url:"https://www.respekt.net/projekte-einreichen/projekt-einreichen-information/"
+  },
+  {
+    n:"stifter-helfen.at — IT-Spenden", o:"Haus des Stiftens gGmbH", k:"eigen sach",
+    geld:"Software &amp; Hardware kostenlos oder stark reduziert", frist:"laufend", fristTyp:"open", fit:"hoch",
+    was:"Vermittelt Produktspenden und Sonderkonditionen namhafter IT-Unternehmen an gemeinnützige Organisationen — seit 2012 auch in Österreich. Dazu Know-how zur Digitalisierung.",
+    auf:[
+      "Registrierung auf dem Portal und Nachweis der Gemeinnützigkeit",
+      "Erforderlich: aktueller Vereinsregisterauszug des BMI und Statuten",
+      "Meist zusätzlich ein Nachweis der Steuerbegünstigung",
+      "Zusätzlich gelten die Förderkriterien der einzelnen IT-Spender"
+    ],
+    tipp:"Direkt am Anfang erledigen. Freiwilligenverwaltung, Terminplanung, Matching von Vorleser:in und Familie, Wirkungsmessung — das läuft alles über Software. Hier spart ihr real vierstellige Beträge pro Jahr.",
+    url:"https://www.stifter-helfen.at/ueber_uns/ueber_stifter_helfen_at"
+  },
+  {
+    n:"Buchstart &amp; Büchereiverband Österreichs", o:"BVÖ / Österreichisches Bibliothekswerk", k:"eigen sach",
+    geld:"Sachleistungen, Bücherpakete, Räume", frist:"laufend", fristTyp:"open", fit:"hoch",
+    was:"Buchstart ist das österreichische Family-Literacy-Programm für 0- bis 3-Jährige: Buchstart-Taschen mit Buchgeschenk als Türöffner zu Familien. Der BVÖ fördert außerdem Veranstaltungen öffentlicher Bibliotheken mit Autor:innen.",
+    auf:[
+      "Läuft über Bibliotheken als Partner — Kooperation statt Direktförderung",
+      "Veranstaltungsförderung des BVÖ ist an öffentliche Bibliotheken adressiert",
+      "Regionale Ausprägungen unterschiedlich (z. B. Buchstart Burgenland mit Landesfinanzierung)"
+    ],
+    tipp:"Sucht die Kooperation mit den <b>Büchereien Wien</b>: kostenlose Räume für Freiwilligen-Schulungen, Bücherpakete, gemeinsame Veranstaltungen und ein natürlicher „Anschlusspunkt" für Familien nach den 20 Wochen. Solche Kooperationsbestätigungen erhöhen die Bewilligungsquote bei allen anderen Anträgen deutlich.",
+    url:"https://www.buchstart.at/"
+  },
+  {
+    n:"Patenschaften, Mitgliedsbeiträge, Firmenkooperationen", o:"Eigenfundraising", k:"eigen",
+    geld:"€ 938 = eine Familie / ein Zyklus", frist:"laufend", fristTyp:"open", fit:"hoch",
+    was:"Das planbarste Geld ist selbst eingeworbenes Geld. Ein klar bezifferter Kostensatz pro Familie macht Spenden greifbar und ist die Basis für Paten- und Firmenmodelle.",
+    auf:[
+      "Statuten müssen Mitgliedsbeiträge vorsehen",
+      "Bei Spendenbegünstigung: Verwaltungskosten unter 10 % der Spendeneinnahmen halten",
+      "Sponsoring mit Gegenleistung ist steuerlich anders zu behandeln als Spenden — vorab mit der Steuerberatung klären"
+    ],
+    tipp:"Formuliert eine <b>Patenschaft</b>: „Mit € 938 begleiten Sie eine Familie 20 Wochen lang." Wiener Unternehmen mit CSR-Budget (Versicherungen, Banken, Immobilien) buchen so etwas gern paketweise — und ihr habt sofort den Eigenmittelanteil, den jeder öffentliche Geber sehen will.",
+    url:"https://www.fundraising.at/know-how/stiftungsfundraising/"
+  },
+  {
+    n:"Kooperation statt Konkurrenz: bestehende Wiener Lesepat:innen-Strukturen", o:"Bildungsdirektion Wien, Wiener Rotes Kreuz, MA 17", k:"eigen sach",
+    geld:"kein Geld — Zugang, Freiwillige, Referenzen", frist:"laufend", fristTyp:"open", fit:"hoch",
+    was:"Wien betreibt seit Jahren mehrsprachige Vorlesepat:innen-Programme: die Bildungsdirektion sucht laufend ehrenamtliche Lesementor:innen, seit 2013 sind mehrsprachige Vorlesepat:innen an Volksschulen im Einsatz, das Wiener Rote Kreuz vermittelt Lesepat:innen in Kindergärten.",
+    auf:[
+      "Keine formalen Auflagen — es geht um Kooperationsvereinbarungen",
+      "Abgrenzung des eigenen Angebots sauber darstellen (ihr geht ins Zuhause, die anderen in Institutionen)"
+    ],
+    tipp:"Wichtiger strategischer Punkt: Fördergeber prüfen, ob es das Angebot schon gibt. Formuliert aktiv, <b>warum das häusliche Setting etwas ist, was keines dieser Programme leistet</b> — und holt euch von ihnen Kooperationsbestätigungen statt in Konkurrenz zu treten. Zusätzlicher Nutzen: geschulte Freiwillige, die dort abspringen, sind eure besten Kandidat:innen.",
+    url:"https://www.wien.gv.at/zusammenleben/lesepaten-gesucht"
+  }
+];
+
+const KATS = [
+  {id:"alle", label:"Alle"},
+  {id:"wien", label:"Stadt Wien"},
+  {id:"bund", label:"Bund"},
+  {id:"eu", label:"EU"},
+  {id:"stiftung", label:"Stiftungen"},
+  {id:"preis", label:"Preise"},
+  {id:"eigen", label:"Eigenmittel"},
+  {id:"sach", label:"Sachleistungen"}
+];
+
+const FRIST_LABEL = {open:"offen / laufend", warn:"Frist beachten", closed:"derzeit geschlossen"};
+const FRIST_CLASS = {open:"open", warn:"", closed:"closed"};
+
+let aktiv = "alle";
+const grid = document.getElementById("grid");
+const chips = document.getElementById("chips");
+const q = document.getElementById("q");
+const count = document.getElementById("count");
+
+KATS.forEach(k=>{
+  const b = document.createElement("button");
+  b.className="chip"; b.textContent=k.label; b.setAttribute("aria-pressed", k.id===aktiv);
+  b.onclick=()=>{aktiv=k.id; [...chips.children].forEach(c=>c.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); render();};
+  chips.appendChild(b);
+});
+
+function render(){
+  const term = q.value.trim().toLowerCase();
+  const list = DATA.filter(d=>{
+    const kOk = aktiv==="alle" || d.k.split(" ").includes(aktiv);
+    if(!kOk) return false;
+    if(!term) return true;
+    const hay = (d.n+" "+d.o+" "+d.was+" "+d.tipp+" "+d.geld+" "+d.frist+" "+d.auf.join(" ")).toLowerCase();
+    return hay.includes(term);
+  });
+  count.textContent = list.length + (list.length===1 ? " Fördermöglichkeit" : " Fördermöglichkeiten");
+  grid.innerHTML = list.map(d=>`
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <h3>${d.n}</h3>
+          <div class="org">${d.o}</div>
+        </div>
+        <span class="fit ${d.fit}">Passung ${d.fit}</span>
+      </div>
+      <div class="meta">
+        <span class="tag money">${d.geld}</span>
+        <span class="tag ${FRIST_CLASS[d.fristTyp]}">${d.frist}</span>
+      </div>
+      <p>${d.was}</p>
+      <div class="tipp"><b>Empfehlung:</b> ${d.tipp}</div>
+      <details>
+        <summary>Auflagen &amp; Bedingungen</summary>
+        <ul>${d.auf.map(a=>`<li>${a}</li>`).join("")}</ul>
+      </details>
+      <a class="go" href="${d.url}" target="_blank" rel="noopener">Zur offiziellen Seite →</a>
+    </article>`).join("");
+}
+q.addEventListener("input", render);
+render();
+
+/* Checklist persistence */
+document.querySelectorAll('[data-k]').forEach(el=>{
+  const key = "vx-"+el.dataset.k;
+  try{ el.checked = localStorage.getItem(key)==="1"; }catch(e){}
+  el.addEventListener("change", ()=>{ try{ localStorage.setItem(key, el.checked?"1":"0"); }catch(e){} });
+});
+</script>
+</body>
+</html>
