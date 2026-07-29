@@ -11,22 +11,27 @@ keine externen Abhängigkeiten. Einfach im Browser öffnen.
 
 Abschnitte:
 
-1. Finanzierungsstrategie (3 Säulen)
-2. Projektjahr 2027 und Finanzierungslücke — 30 Familien, Aufbau Jän–Mär, Besuche ab April
-3. Rückwärts geplanter Antragsfahrplan
-4. 31 recherchierte Fördertöpfe (filterbar, mit Auflagen und Empfehlung)
-5. Compliance-Checkliste (Vereinsrecht, Kinderschutz, Datenschutz, Abrechnung)
-6. Antragsbausteine und Wirkungslogik
-7. Budget 2027 in zwei Szenarien
-8. Quellen
+1. Der Verein: Organe, Rollen, Honorar — der Verein hat **keine Angestellten**,
+   die Projektkoordination ist selbständig und legt Honorarnoten
+2. Finanzierungsstrategie (3 Säulen)
+3. Projektjahr 2027 und Finanzierungslücke — 30 Familien, Aufbau Jän–Mär, Besuche ab April
+4. Auf fünf Jahre stabil: die wiederkehrende Basis
+5. Rückwärts geplanter Antragsfahrplan
+6. 31 recherchierte Fördertöpfe (filterbar, mit Auflagen und Empfehlung)
+7. Compliance-Checkliste (Vereinsrecht, Kinderschutz, Datenschutz, Abrechnung)
+8. Antragsbausteine und Wirkungslogik
+9. Budget 2027 im Detail
+10. Quellen
 
 ## Stand
 
-Recherchestand **28. Juli 2026**. Fördersummen, Fristen und Schwerpunkte werden
+Recherchestand **29. Juli 2026**. Fördersummen, Fristen und Schwerpunkte werden
 jährlich neu festgelegt — vor jeder Einreichung auf der jeweils verlinkten
 Originalseite verifizieren.
 
-Keine Rechts- oder Steuerberatung.
+Keine Rechts- oder Steuerberatung. Die Angaben zu Honorar, SVS-Beiträgen und
+Scheinselbständigkeit sind Recherche, kein Ersatz für eine Steuerberatung —
+vor der ersten Honorarnote fachlich prüfen lassen.
 
 ## Hinweis
 
