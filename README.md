@@ -1,6 +1,6 @@
-# Vorlese-Express Wien — Förderlandschaft
+# VorleseExpress Wien — Förderlandschaft
 
-Interne Übersicht der Finanzierungsmöglichkeiten für **Vorlese-Express Wien**:
+Interne Übersicht der Finanzierungsmöglichkeiten für **VorleseExpress Wien**:
 ehrenamtliche Vorleser:innen besuchen Familien mit Kindern von 2–8 Jahren
 20 Wochen lang wöchentlich zu Hause. Fokus: Deutscherwerb und Integration.
 
