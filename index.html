@@ -83,6 +83,8 @@
   }
   .tl-item.now::before{border-color:var(--accent); background:var(--accent)}
   .tl-item.soon::before{border-color:var(--gold)}
+  .tl-item.done::before{border-color:var(--teal); background:var(--teal)}
+  .tl-item.done .tl-when{color:var(--teal)}
   .tl-when{font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3)}
   .tl-item.now .tl-when{color:var(--accent)}
   .tl-what{font-weight:650; margin:2px 0 3px}
@@ -176,6 +178,7 @@
   .bar{height:28px; border-radius:8px; overflow:hidden; display:flex; margin:12px 0 8px; background:var(--line)}
   .bar i{display:block; height:100%}
   .bar .sec{background:var(--teal)}
+  .bar .pend{background:var(--gold)}
   .bar .miss{background:repeating-linear-gradient(45deg, var(--accent-soft), var(--accent-soft) 7px, transparent 7px, transparent 14px); border-left:2px solid var(--accent)}
   .legend{display:flex; gap:20px; flex-wrap:wrap; font-size:13px; color:var(--ink-2)}
   .legend b{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px}
@@ -219,14 +222,15 @@
 
 <div class="hero">
   <div class="wrap">
-    <span class="kicker">Recherchestand 29. Juli 2026</span>
+    <span class="kicker">Recherchestand 29. Juli 2026 · aktualisiert 18. Oktober 2026</span>
     <h1>Wie du den VorleseExpress<br>in Österreich finanzierst.</h1>
-    <p class="lede">Finanzierungsplan für das erste Betriebsjahr: <b>30 Familien in Wien im Jahr 2027</b>. Jänner bis März Aufbau — Freiwillige rekrutieren, Familien finden, Schulungen aufsetzen, Fundraising. Ab April 2027 laufen die wöchentlichen Hausbesuche über 20 Wochen. € 10.000 sind bereits gesichert.</p>
+    <p class="lede">Finanzierungsplan für das erste Betriebsjahr: <b>30 Familien in Wien im Jahr 2027</b>. Jänner bis März Aufbau — Freiwillige rekrutieren, Familien finden, Schulungen aufsetzen, Fundraising. Ab April 2027 laufen die wöchentlichen Hausbesuche über 20 Wochen. € 10.000 sind bereits gesichert, € 22.000 beim Anerkennungsfonds beantragt. Schwerpunkt-Bezirke: <b>2. / 20.</b> und <b>18. / 19.</b></p>
     <div class="stats">
       <div class="stat"><b>30</b><small>Familien im Jahr 1 (2027)</small></div>
       <div class="stat"><b>€ 10.000</b><small>bereits gesichert</small></div>
-      <div class="stat"><b>€ 55.300</b><small>Gesamtbudget 2027 inkl. Koordinationshonorar</small></div>
-      <div class="stat" style="border-color:var(--accent)"><b style="color:var(--accent)">Sept. 2026</b><small>Deadline für den wichtigsten Antrag</small></div>
+      <div class="stat"><b>€ 22.000</b><small>Anerkennungsfonds beantragt</small></div>
+      <div class="stat"><b>€ 39.350</b><small>Gesamtbudget 2027 (Stand Oktober 2026)</small></div>
+      <div class="stat" style="border-color:var(--accent)"><b style="color:var(--accent)">€ 7.350</b><small>noch offen, wenn der Anerkennungsfonds voll bewilligt wird</small></div>
     </div>
   </div>
 </div>
@@ -240,7 +244,8 @@
     <div class="cols2">
       <div class="box">
         <h3>Die Organe</h3>
-        <p style="font-size:14.5px;color:var(--ink-2);margin:6px 0 0">VorleseExpress Wien ist ein Verein nach dem <b>Vereinsgesetz 2002</b> mit gemeinnützigem Zweck nach §§ 34 ff. BAO. Zuständige Vereinsbehörde ist die Landespolizeidirektion Wien; ausgewiesen wird der Verein über seine ZVR-Zahl.</p>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:6px 0 0">VorleseExpress Wien ist ein Verein nach dem <b>Vereinsgesetz 2002</b> mit gemeinnützigem Zweck nach §§ 34 ff. BAO. Zuständige Vereinsbehörde ist die Landespolizeidirektion Wien; ausgewiesen wird der Verein über seine ZVR-Zahl (1993303543).</p>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:10px 0 0"><b>Vereinskonto:</b> IBAN <code>AT73 2011 1858 3855 3200</code> — für Spenden, Förderauszahlungen und alle Anträge. Fördermittel immer auf dieses Konto, nie auf ein Privatkonto.</p>
         <ul>
           <li><b>Mitgliederversammlung</b> — oberstes Organ, wenigstens alle fünf Jahre einzuberufen (§ 5 Abs 2 VerG). Beschließt Statutenänderungen, wählt den Vorstand, entlastet ihn.</li>
           <li><b>Vorstand</b> — Leitungsorgan aus mindestens zwei natürlichen Personen (§ 5 Abs 3 VerG). Vertritt den Verein nach außen, unterschreibt Förderanträge, verantwortet die widmungsgemäße Mittelverwendung. <b>Ehrenamtlich.</b></li>
@@ -279,7 +284,7 @@
     </div>
 
     <div class="note" style="margin-top:18px;background:var(--red-soft);border-left-color:var(--red)">
-      <b>Das müsst ihr vor September 2026 klären — daran hängen € 20.000.</b> Der Anerkennungsfonds nennt „Personal- und Sachkosten“ als förderfähig und verlangt für Personalkosten den Nachweis „anhand von Stundenlisten, <b>Lohnkonten</b> und Zahlungsnachweisen“. Ein Lohnkonto gibt es nur bei Angestellten. Honorare und Werkverträge werden in der Richtlinie <em>nicht ausdrücklich</em> erwähnt — weder als zulässig noch als ausgeschlossen. Ruft die Kontaktstelle des Sozialministeriums an, bevor ihr einreicht, und lasst euch schriftlich bestätigen, dass ein Honorar der Projektkoordination förderfähig ist und wie es zu belegen ist. Dieselbe Frage stellt sich bei der MA 17. Sollte ein Geber ausschließlich echte Dienstverhältnisse fördern, ist das ein Grund, die Rechtsform der Beauftragung zu überdenken — kein Grund, es im Antrag zu verschweigen.
+      <b>Das müsst ihr klären, bevor das Geld fließt — daran hängen € 22.000.</b> <em>(Stand Oktober 2026: Antrag über € 22.000 ist eingereicht. Die Frage bleibt für die Abrechnung relevant.)</em> Der Anerkennungsfonds nennt „Personal- und Sachkosten“ als förderfähig und verlangt für Personalkosten den Nachweis „anhand von Stundenlisten, <b>Lohnkonten</b> und Zahlungsnachweisen“. Ein Lohnkonto gibt es nur bei Angestellten. Honorare und Werkverträge werden in der Richtlinie <em>nicht ausdrücklich</em> erwähnt — weder als zulässig noch als ausgeschlossen. Ruft die Kontaktstelle des Sozialministeriums an, bevor ihr einreicht, und lasst euch schriftlich bestätigen, dass ein Honorar der Projektkoordination förderfähig ist und wie es zu belegen ist. Dieselbe Frage stellt sich bei der MA 17. Sollte ein Geber ausschließlich echte Dienstverhältnisse fördern, ist das ein Grund, die Rechtsform der Beauftragung zu überdenken — kein Grund, es im Antrag zu verschweigen.
     </div>
 
     <div class="note" style="margin-top:16px">
@@ -366,15 +371,16 @@
 
     <div class="gapbox">
       <div class="gaphead">
-        <h3>Gesamtbudget 2027: € 55.300</h3>
-        <span>30 Familien · € 1.843 pro Familie im Aufbaujahr</span>
+        <h3>Gesamtbudget 2027: € 39.350</h3>
+        <span>Stand 18. Oktober 2026 · 30 Familien · € 1.312 pro Familie im Aufbaujahr</span>
       </div>
-      <div class="bar"><i class="sec" style="width:18.1%"></i><i class="miss" style="width:81.9%"></i></div>
+      <div class="bar"><i class="sec" style="width:25.4%"></i><i class="pend" style="width:55.9%"></i><i class="miss" style="width:18.7%"></i></div>
       <div class="legend">
-        <span><b style="background:var(--teal)"></b>€ 10.000 gesichert (18 %)</span>
-        <span><b style="background:var(--accent)"></b>€ 45.300 offen</span>
+        <span><b style="background:var(--teal)"></b>€ 10.000 gesichert (25 %)</span>
+        <span><b style="background:var(--gold)"></b>€ 22.000 Anerkennungsfonds beantragt (56 %)</span>
+        <span><b style="background:var(--accent)"></b>€ 7.350 offen (19 %)</span>
       </div>
-      <p style="font-size:14px;color:var(--ink-2);margin:12px 0 0">Der größte Posten ist die <b>bezahlte Projektkoordination mit 20 Wochenstunden</b> — rund € 30.700 Honorar im Jahr, also 55 % des Budgets. Das ist kein Luxus, sondern die Bedingung dafür, dass 30 Familien und 30 Freiwillige verlässlich betreut werden. Der Kostensatz je Familie wirkt hoch, weil der komplette einmalige Aufbau im ersten Jahr steckt. <b>Im zweiten Jahr betreut dieselbe Struktur rund 45 Familien für ca. € 63.000 — das sind € 1.400 pro Familie</b>, und der Anteil sinkt mit jedem Jahrgang weiter.</p>
+      <p style="font-size:14px;color:var(--ink-2);margin:12px 0 0">Das Budget wurde im Oktober 2026 von ursprünglich € 55.300 auf <b>€ 39.350</b> angepasst. Wird der Anerkennungsfonds voll bewilligt, sind <b>81 %</b> gedeckt und nur noch € 7.350 einzuwerben. Der größte Posten bleibt die <b>bezahlte Projektkoordination</b>. Das ist kein Luxus, sondern die Bedingung dafür, dass 30 Familien und 30 Freiwillige verlässlich betreut werden. Achtung: Das schlankere Budget lässt wenig Puffer — Ausfälle bei Freiwilligen, höhere Fahrtkosten oder eine Teilbewilligung des Anerkennungsfonds müsst ihr über Spenden oder Plan B abfangen.</p>
     </div>
 
     <h3 style="margin:30px 0 10px">Deckungsplan 2027</h3>
@@ -383,21 +389,23 @@
       <table>
         <thead><tr><th>Quelle</th><th>Deckt</th><th class="num">Betrag</th><th>Einreichen bis</th></tr></thead>
         <tbody>
-          <tr><td><b>Bereits gesichert</b></td><td>Liquidität für die Aufbauphase Jän–Mär</td><td class="num">€ 10.000</td><td>—</td></tr>
-          <tr><td>Anerkennungsfonds (Sozialministerium)</td><td>Koordination (Hauptanteil), Versicherung, Freiwilligenwerbung</td><td class="num">€ 20.000</td><td>September 2026</td></tr>
-          <tr><td>MA 17 Großprojekt (ab € 5.000)</td><td>Koordination (Teilanteil), Übersetzungen, mehrsprachiges Material, Familienakquise</td><td class="num">€ 8.000</td><td>15. Jänner 2027</td></tr>
-          <tr><td>MA 13 Kleinprojekt</td><td>Erst-Schulung, Vertiefungsschulungen, Supervision</td><td class="num">€ 5.000</td><td>Anfang Nov. 2026</td></tr>
-          <tr><td>Licht ins Dunkel</td><td>Bücherpakete, Öffi-Fahrtkosten der Freiwilligen</td><td class="num">€ 5.000</td><td>bis 31. Dez. 2026</td></tr>
-          <tr><td>Bezirksförderungen (2–3 Bezirke)</td><td>Auftakt- und Abschlussfeste im Grätzl</td><td class="num">€ 2.500</td><td>Februar 2027</td></tr>
-          <tr><td>Service-Clubs, Patenschaften, Spenden</td><td>Wirkungsmessung, Overhead, Puffer</td><td class="num">€ 4.800</td><td>laufend</td></tr>
+          <tr><td><b>Bereits gesichert</b></td><td>Liquidität für die Aufbauphase Jän–Mär</td><td class="num">€ 10.000</td><td>✓ gesichert</td></tr>
+          <tr><td><b>Anerkennungsfonds (Sozialministerium)</b></td><td>Koordination (Hauptanteil), Versicherung, Freiwilligenwerbung</td><td class="num">€ 22.000</td><td>✓ eingereicht, Entscheidung offen</td></tr>
+          <tr><td>Licht ins Dunkel</td><td>Bücherpakete, Öffi-Fahrtkosten der Freiwilligen</td><td class="num">€ 3.000</td><td>bis 31. Dez. 2026</td></tr>
+          <tr><td>Bezirksförderungen 2., 20., 18. und 19. Bezirk</td><td>Auftakt- und Abschlussfeste im Grätzl</td><td class="num">€ 2.000</td><td>Februar 2027</td></tr>
+          <tr><td>Service-Clubs, Patenschaften, Spenden</td><td>Wirkungsmessung, Overhead, Puffer</td><td class="num">€ 2.350</td><td>laufend</td></tr>
         </tbody>
-        <tfoot><tr><td colspan="2">Summe</td><td class="num">€ 55.300</td><td>gedeckt</td></tr></tfoot>
+        <tfoot><tr><td colspan="2">Summe</td><td class="num">€ 39.350</td><td>gedeckt</td></tr></tfoot>
       </table>
     </div>
 
     <div class="note" style="margin-top:20px">
+      <b>Plan B, falls der Anerkennungsfonds weniger bewilligt:</b> MA 17 Integrationsprojekt (Einreichung 15. Jänner 2027, Großprojekt ab € 5.000 kann einen Teil der Koordination tragen) und MA 13 Kleinprojekt (Erst-Schulung, Supervision; Antrag bis Anfang November 2026, wenn die Aufbauphase am 2. Jänner startet). Beide sind nicht mehr im Grundplan, bleiben aber die Reserve — lieber jetzt vorbereiten als im Jänner improvisieren.
+    </div>
+
+    <div class="note" style="margin-top:20px">
       <b>Die Koordination ist der schwierigste Posten — plant sie bewusst als Kofinanzierung.</b> Kein einziger Topf finanziert eine Koordination allein. Der Anerkennungsfonds erlaubt Personalkosten ausdrücklich und trägt deshalb den Hauptanteil; die MA 17 kann über die Großprojektschiene einen zweiten Teil übernehmen. Wichtig ist die saubere Trennung: Jeder Geber fördert einen <em>prozentual benannten Anteil</em> derselben Leistung — das ist erlaubte Kofinanzierung. Verboten wäre, denselben Euro zweimal abzurechnen. Weist den Aufteilungsschlüssel in beiden Anträgen identisch aus.
-      <br><br><b>Ein Vorbehalt, der über € 28.000 dieses Plans entscheidet:</b> Die Koordination wird nicht angestellt, sondern legt Honorarnoten (<a href="#verein">Abschnitt 01</a>). Ob ein Geber ein Honorar wie Personalkosten fördert, steht in den wenigsten Richtlinien — der Anerkennungsfonds etwa verlangt für Personalkosten „Lohnkonten“, die es nur bei Angestellten gibt. Holt euch beim Anerkennungsfonds <em>und</em> bei der MA 17 vorab eine schriftliche Auskunft, bevor ihr die Anträge aufsetzt. Fällt sie negativ aus, müsst ihr entweder auf ein Dienstverhältnis umstellen oder den Deckungsplan neu verteilen — beides ist vorher machbar und nachher nicht.
+      <br><br><b>Ein Vorbehalt, der über € 22.000 dieses Plans entscheidet:</b> Die Koordination wird nicht angestellt, sondern legt Honorarnoten (<a href="#verein">Abschnitt 01</a>). Ob ein Geber ein Honorar wie Personalkosten fördert, steht in den wenigsten Richtlinien — der Anerkennungsfonds etwa verlangt für Personalkosten „Lohnkonten“, die es nur bei Angestellten gibt. Holt euch beim Anerkennungsfonds <em>und</em> bei der MA 17 vorab eine schriftliche Auskunft, bevor ihr die Anträge aufsetzt. Fällt sie negativ aus, müsst ihr entweder auf ein Dienstverhältnis umstellen oder den Deckungsplan neu verteilen — beides ist vorher machbar und nachher nicht.
       <br><br>Für die Koordination gar nicht geeignet: Licht ins Dunkel (Ausstattung und Maßnahmen), Bezirksförderung (Veranstaltungen), die meisten Preisgelder.
     </div>
 
@@ -505,7 +513,7 @@
       <table>
         <thead><tr><th>Jahr</th><th>Familien</th><th class="num">Budget</th><th>Strukturmeilenstein</th><th class="num">Dauerspender</th></tr></thead>
         <tbody>
-          <tr><td><b>2027</b> Aufbau</td><td>30</td><td class="num">€ 55.300</td><td>20 h Koordination auf Honorarbasis · erste Projektförderungen · Wirkungsmessung startet</td><td class="num">0–15</td></tr>
+          <tr><td><b>2027</b> Aufbau</td><td>30</td><td class="num">€ 39.350</td><td>20 h Koordination auf Honorarbasis · erste Projektförderungen · Wirkungsmessung startet</td><td class="num">0–15</td></tr>
           <tr><td><b>2028</b> Bestätigung</td><td>45</td><td class="num">€ 63.000</td><td>Koordination auf 25 h · Spendenbegünstigung erteilt · erste Stiftung · SozialMarie</td><td class="num">30</td></tr>
           <tr><td><b>2029</b> Verstetigung</td><td>60</td><td class="num">€ 74.000</td><td>Koordination auf 30 h + zweite Honorarkraft (Assistenz) · Gesamtförderung beantragt · AMIF-Partnerschaft angebahnt</td><td class="num">60</td></tr>
           <tr><td><b>2030</b> Struktur</td><td>75</td><td class="num">€ 84.000</td><td>Zwei Kräfte à Teilzeit · Anstellung geprüft · Gesamtförderung läuft · AMIF-Projekt 2029/30 in Umsetzung</td><td class="num">100</td></tr>
@@ -514,7 +522,7 @@
       </table>
     </div>
     <div class="note" style="margin-top:18px">
-      <b>Die Koordinationskosten wachsen mit — plant das ein.</b> Der Sprung von 30 auf 75 Familien ist kein reiner Mengeneffekt: Eine Koordinationskraft mit 20 Wochenstunden trägt realistisch 30 bis 40 Familien. Darüber braucht es mehr Stunden und ab etwa 60 Familien eine zweite Person, schon allein wegen des Ausfallrisikos. Deshalb steigt die Zielsumme im Pfad von € 55.300 auf € 90.000, obwohl die Kosten <em>pro Familie</em> von € 1.843 auf rund € 1.100 sinken. Genau diese sinkende Stückkostenkurve ist das stärkste Argument gegenüber Stiftungen.<br><br><b>Und plant den Wechsel der Vertragsform mit.</b> Solange eine Person auf Honorarbasis 20 Wochenstunden leistet, ist das vertretbar. Ab zwei dauerhaft beschäftigten Kräften mit festen Aufgaben, wachsender Stundenzahl und dem Verein als einzigem Auftraggeber kippt die Beurteilung — dann ist ein echtes Dienstverhältnis die ehrlichere und sicherere Konstruktion. Rechnet ab Jahr 3 mit rund 29 % Lohnnebenkosten obendrauf, wenn ihr umstellt, und prüft die Frage jährlich, statt sie zu verschleppen. Ein Fördergeber, der ein Dienstverhältnis verlangt, ist dann kein Problem, sondern nur ein Termin.
+      <b>Die Koordinationskosten wachsen mit — plant das ein.</b> Der Sprung von 30 auf 75 Familien ist kein reiner Mengeneffekt: Eine Koordinationskraft mit 20 Wochenstunden trägt realistisch 30 bis 40 Familien. Darüber braucht es mehr Stunden und ab etwa 60 Familien eine zweite Person, schon allein wegen des Ausfallrisikos. Deshalb steigt die Zielsumme im Pfad von € 39.350 auf € 90.000 — mit mehr Familien und mehr Koordinationsstunden sinken die Kosten <em>pro Familie</em> trotzdem auf rund € 1.100. Genau diese sinkende Stückkostenkurve ist das stärkste Argument gegenüber Stiftungen.<br><br><b>Und plant den Wechsel der Vertragsform mit.</b> Solange eine Person auf Honorarbasis 20 Wochenstunden leistet, ist das vertretbar. Ab zwei dauerhaft beschäftigten Kräften mit festen Aufgaben, wachsender Stundenzahl und dem Verein als einzigem Auftraggeber kippt die Beurteilung — dann ist ein echtes Dienstverhältnis die ehrlichere und sicherere Konstruktion. Rechnet ab Jahr 3 mit rund 29 % Lohnnebenkosten obendrauf, wenn ihr umstellt, und prüft die Frage jährlich, statt sie zu verschleppen. Ein Fördergeber, der ein Dienstverhältnis verlangt, ist dann kein Problem, sondern nur ein Termin.
       <br><br>
       <b>Das größte Risiko ist nicht zu wenig Geld, sondern zu wenige Quellen.</b> Die meisten gemeinnützigen Organisationen stützen sich faktisch auf zwei bis drei Säulen — bricht eine weg, entsteht sofort eine Krise. Prüft deshalb ab Jahr 2 jährlich zwei Kennzahlen: Wie viel Prozent kommt vom größten Geber? (Ziel: unter 30 %.) Und wie viele Monate Betrieb deckt die Rücklage? (Ziel: mindestens drei.) Beide Zahlen sagen mehr über eure Überlebensfähigkeit aus als die Gesamtsumme.
     </div>
@@ -525,67 +533,77 @@
 <section id="fahrplan">
   <div class="wrap">
     <h2><span class="num">05</span>Rückwärts geplant: was wann eingereicht sein muss</h2>
-    <p class="sub">Nicht nach Fristen sortiert, sondern nach eurem Bedarf: Das Geld muss da sein, <em>bevor</em> die Kosten entstehen. Ausgangspunkt ist der 28. Juli 2026.</p>
+    <p class="sub">Nicht nach Fristen sortiert, sondern nach eurem Bedarf: Das Geld muss da sein, <em>bevor</em> die Kosten entstehen. <b>Aktualisiert am 18. Oktober 2026</b> — Schwerpunkt-Bezirke sind der <b>2. und 20.</b> sowie der <b>18. und 19.</b> Bezirk.</p>
     <div class="tl">
-      <div class="tl-item now">
-        <div class="tl-when">August – September 2026 · höchste Priorität</div>
-        <div class="tl-what">Anerkennungsfonds für freiwilliges Engagement einreichen</div>
-        <div class="tl-note">Keine Frist, aber quartalsweise Bearbeitung — ein Antrag im September wird realistisch im vierten Quartal entschieden, das Geld steht damit zum Jännerstart bereit. Entscheidend: Die zulässige Projektlaufzeit von <b>bis zu zwei Jahren</b> erlaubt euch, Aufbauphase <em>und</em> Betrieb 2027 in einem einzigen Antrag zu bündeln. Beantragt € 20.000 — Schwerpunkt auf den <b>Kosten der Koordination</b>, dazu Versicherung und Freiwilligenwerbung. Der Fonds erlaubt Personal- und Sachkosten ausdrücklich; ausgeschlossen sind nur Freiwilligenpauschalen und Anschaffungen ohne Projektbezug. <b>Vorher anrufen:</b> Die Richtlinie verlangt für Personalkosten den Nachweis über Lohnkonten — bei einer Koordination auf Honorarbasis gibt es die nicht. Lasst euch schriftlich bestätigen, wie ein Honorar zu belegen ist.</div>
+      <div class="tl-item done">
+        <div class="tl-when">✓ erledigt · Oktober 2026</div>
+        <div class="tl-what">Anerkennungsfonds für freiwilliges Engagement eingereicht — € 22.000</div>
+        <div class="tl-note">Quartalsweise Bearbeitung: Entscheidung realistisch Ende 2026 / Anfang 2027. Jetzt: Eingangsbestätigung aufheben, Rückfragen des Ministeriums binnen Tagen beantworten und schriftlich klären, wie das <b>Honorar</b> der Koordination abzurechnen ist (die Richtlinie nennt Lohnkonten). Bis zur Zusage keine Kosten auf diesen Antrag vorfinanzieren, die ihr nicht aus den € 10.000 tragen könnt.</div>
       </div>
       <div class="tl-item now">
-        <div class="tl-when">September – Oktober 2026</div>
-        <div class="tl-what">Stiftungen und Service-Clubs ansprechen</div>
-        <div class="tl-note">Stiftungsentscheidungen dauern Monate und laufen über Gespräche, nicht über Formulare. Jetzt Kurzkonzept (2 Seiten) an die Sinnstifter-Stiftungen schicken und Vorträge bei Wiener Rotary-, Lions- und Zonta-Clubs vereinbaren — dort fällt die Zusage oft binnen Wochen und ihr gewinnt gleichzeitig Vorleser:innen.</div>
+        <div class="tl-when">jetzt – November 2026 · höchste Priorität</div>
+        <div class="tl-what">Bezirke 2/20 und 18/19 erschließen</div>
+        <div class="tl-note">Termine bei den Bezirksvorstehungen <b>Leopoldstadt (2.)</b>, <b>Brigittenau (20.)</b>, <b>Währing (18.)</b> und <b>Döbling (19.)</b> vereinbaren — Projekt vorstellen, nach Bezirksförderung und Räumen für Schulungen fragen. Parallel Familienzugang über Kindergärten, Volksschulen, Nachbarschaftszentren und Bibliotheken in diesen Bezirken aufbauen. Prüfen, ob Teile des 2. oder 20. Bezirks in einem WieNeu+-/GB*-Gebiet liegen (Grätzlmarie, bis € 30.000).</div>
+      </div>
+      <div class="tl-item now">
+        <div class="tl-when">Oktober – Dezember 2026</div>
+        <div class="tl-what">Service-Clubs, Stiftungen und Spender:innen ansprechen</div>
+        <div class="tl-note">Rotary-, Lions- und Zonta-Clubs in den Schwerpunkt-Bezirken anschreiben und Vorträge vereinbaren — dort fallen Zusagen oft binnen Wochen, und ihr gewinnt gleichzeitig Vorleser:innen. Kurzkonzept (2 Seiten) an Stiftungen. In jeder Unterlage das <b>Vereinskonto AT73 2011 1858 3855 3200</b> angeben. Ziel: € 2.350 bis Ende März.</div>
       </div>
       <div class="tl-item soon">
-        <div class="tl-when">bis 15. Oktober 2026</div>
-        <div class="tl-what">Elternbildungsförderung des Bundes (BKA, aus dem FLAF)</div>
-        <div class="tl-note">Harte Jahresfrist für das Förderjahr 2027 — verpasst heißt ein Jahr warten. Nur sinnvoll, wenn ihr Elternformate fix ins Programm nehmt (Elternabende „Wie lese ich meinem Kind vor?“, dialogisches Lesen). <b>Vorlauf einplanen:</b> Einreichung läuft nur online über das Transparenzportal und alle Zeichnungsberechtigten brauchen ID Austria — das jetzt beantragen, nicht am 14. Oktober.</div>
-      </div>
-      <div class="tl-item soon">
-        <div class="tl-when">Oktober – November 2026</div>
-        <div class="tl-what">Licht ins Dunkel (Fenster endet 31. Dezember 2026)</div>
-        <div class="tl-note">Braucht einen Finanzierungsplan für drei Jahre und eine Zukunftsstrategie — plant zwei Wochen Schreibarbeit ein. Nur <b>ein</b> geförderter Antrag je Träger in drei Jahren: setzt ihn auf Bücherpakete, Fahrtkosten und Erstausstattung, nicht auf Kleinkram.</div>
-      </div>
-      <div class="tl-item soon">
-        <div class="tl-when">bis Anfang November 2026</div>
+        <div class="tl-when">bis Anfang November 2026 · nur Plan B</div>
         <div class="tl-what">MA 13 Kleinprojektförderung — 8 Wochen vor Projektstart</div>
-        <div class="tl-note">Wenn die Aufbauphase am 2. Jänner startet, muss der Antrag Anfang November drin sein. Erstantragsteller:innen melden sich vorab per Mail bei <code>jugend@ma13.wien.gv.at</code> — klärt dabei gleich, ob der Antrag aus dem Budget 2027 bedient wird, da die Stadt kalenderjahrbezogen fördert.</div>
+        <div class="tl-note">Nicht mehr im Grundplan, aber die Reserve, falls der Anerkennungsfonds weniger bewilligt. Wenn die Aufbauphase am 2. Jänner startet, muss der Antrag Anfang November drin sein. Erstantragsteller:innen melden sich vorab bei <code>jugend@ma13.wien.gv.at</code>.</div>
+      </div>
+      <div class="tl-item soon">
+        <div class="tl-when">November – 31. Dezember 2026</div>
+        <div class="tl-what">Licht ins Dunkel — € 3.000</div>
+        <div class="tl-note">Fenster endet am 31. Dezember. Braucht einen Finanzierungsplan für drei Jahre und eine Zukunftsstrategie — plant zwei Wochen Schreibarbeit ein. Nur <b>ein</b> geförderter Antrag je Träger in drei Jahren: auf Bücherpakete und Öffi-Fahrtkosten setzen.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-when">15. Jänner 2027</div>
-        <div class="tl-what">MA 17 Integrations-Kleinprojekt</div>
-        <div class="tl-note">Der richtige Termin für euch — nicht der 15.9.2026. MA 17 fördert kalenderjahrbezogen, das Projekt muss innerhalb von 2027 beginnen und enden. Eure Besuchsphase April–August passt exakt. Weitere Termine 15.3. / 15.5. / 15.9. als Rückfalloptionen.</div>
+        <div class="tl-when">2. Jänner 2027</div>
+        <div class="tl-what">Start der Aufbauphase</div>
+        <div class="tl-note">Freiwillige rekrutieren und schulen, Familien in den vier Schwerpunkt-Bezirken finden, Kinderschutzkonzept und Strafregisterbescheinigungen. Finanziert aus den gesicherten € 10.000, bis der Anerkennungsfonds auszahlt.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">15. Jänner 2027 · Plan B</div>
+        <div class="tl-what">MA 17 Integrationsprojekt</div>
+        <div class="tl-note">Einreichen, falls der Anerkennungsfonds bis dahin weniger als € 22.000 zugesagt hat. MA 17 fördert kalenderjahrbezogen — eure Besuchsphase April–August passt. Weitere Termine 15.3. / 15.5. / 15.9. als Rückfalloptionen.</div>
       </div>
       <div class="tl-item">
         <div class="tl-when">Februar 2027</div>
-        <div class="tl-what">Bezirksförderung für das Auftaktfest</div>
-        <div class="tl-note">Mindestens 6 Wochen vor der Veranstaltung bei der Bezirksvorstehung. Reicht parallel in allen Bezirken ein, in denen ihr Familien betreut — jeder Bezirk hat ein eigenes Budget. Ein Auftaktfest im April ist zugleich Presse-, Familien- und Freiwilligenakquise.</div>
+        <div class="tl-what">Bezirksförderungen 2., 20., 18. und 19. Bezirk — € 2.000</div>
+        <div class="tl-note">Mindestens 6 Wochen vor der Veranstaltung bei der jeweiligen Bezirksvorstehung. In allen vier Bezirken parallel einreichen — jeder Bezirk hat ein eigenes Budget. Ein Auftaktfest im April ist zugleich Presse-, Familien- und Freiwilligenakquise.</div>
       </div>
       <div class="tl-item">
         <div class="tl-when">ab April 2027 · Projektstart</div>
-        <div class="tl-what">Bank Austria Sozialpreis (Fenster 2026: 22.4. – 11.5.)</div>
-        <div class="tl-note">Erste Preischance, weil das Projekt dann tatsächlich läuft. Das Publikumsvoting im Sommer entscheidet die Reihung — baut ab Jänner Newsletter- und Social-Media-Liste aus Freiwilligen, Familien und Unterstützer:innen auf.</div>
+        <div class="tl-what">Hausbesuche starten · Bank Austria Sozialpreis</div>
+        <div class="tl-note">30 Familien, 20 Wochen. Erste Preischance, weil das Projekt dann tatsächlich läuft (Fenster 2026 war 22.4. – 11.5.). Das Publikumsvoting im Sommer entscheidet — baut ab Jänner Newsletter- und Social-Media-Liste auf.</div>
       </div>
       <div class="tl-item">
         <div class="tl-when">Juli – 13. September 2027</div>
         <div class="tl-what">Österreichischer Integrationspreis (ÖIF)</div>
-        <div class="tl-note"><b>Nicht 2026:</b> Der Preis verlangt ein bereits laufendes Projekt, eure Besuche starten erst im April 2027. Im September 2027 läuft das Programm seit fünf Monaten — dann ist die Einreichung stark und liefert die ÖIF-Referenz für spätere AMIF-Anträge.</div>
+        <div class="tl-note">Im September 2027 läuft das Programm seit fünf Monaten — dann ist die Einreichung stark und liefert die ÖIF-Referenz für spätere AMIF-Anträge.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">bis 15. Oktober 2027</div>
+        <div class="tl-what">Elternbildungsförderung des Bundes für 2028</div>
+        <div class="tl-note">Die Frist für das Förderjahr 2027 ist am 15. Oktober 2026 abgelaufen. Für 2028 rechtzeitig vorbereiten: Elternformate fix ins Programm nehmen, ID Austria für alle Zeichnungsberechtigten.</div>
       </div>
       <div class="tl-item">
         <div class="tl-when">Herbst 2027</div>
         <div class="tl-what">Spendenbegünstigung § 4a EStG beantragen</div>
-        <div class="tl-note">Möglich, sobald ein volles 12-monatiges Wirtschaftsjahr vorliegt — bei Vereinsgründung 2026 also ab Ende 2027. Antrag läuft zwingend über eine Steuerberatung via FinanzOnline. Ab dann sind Spenden absetzbar, was Firmen- und Großspendengespräche völlig verändert.</div>
+        <div class="tl-note">Möglich, sobald ein volles 12-monatiges Wirtschaftsjahr vorliegt. Antrag zwingend über eine Steuerberatung via FinanzOnline. Ab dann sind Spenden absetzbar, was Firmen- und Großspendengespräche völlig verändert.</div>
       </div>
       <div class="tl-item">
         <div class="tl-when">Jänner – Februar 2028</div>
         <div class="tl-what">SozialMarie</div>
-        <div class="tl-note"><b>Nicht Februar 2027:</b> Das Projekt muss zum Einreichzeitpunkt bereits ausreichend umgesetzt sein und noch laufen — im Februar 2027 habt ihr noch keinen einzigen Hausbesuch gemacht. Ein Jahr später habt ihr 30 abgeschlossene Begleitungen und Wirkungsdaten. 1. Preis € 15.000.</div>
+        <div class="tl-note">Dann habt ihr 30 abgeschlossene Begleitungen und Wirkungsdaten. 1. Preis € 15.000.</div>
       </div>
       <div class="tl-item">
         <div class="tl-when">voraussichtlich Frühjahr 2028</div>
         <div class="tl-what">AMIF-Aufruf für die Projektjahre 2029/30</div>
-        <div class="tl-note">Der größte inhaltlich passende Topf (€ 8,68 Mio p. a. allein für „Bildung“). Der Aufruf 2027/28 endete am 12.5.2026. Nutzt 2027, um Wirkungsdaten und Referenzen zu sammeln und euch als Projektpartner bei einem etablierten Träger zu positionieren.</div>
+        <div class="tl-note">Der größte inhaltlich passende Topf. Nutzt 2027, um Wirkungsdaten und Referenzen zu sammeln und euch als Projektpartner bei einem etablierten Träger zu positionieren.</div>
       </div>
     </div>
   </div>
@@ -713,6 +731,10 @@
     <h2><span class="num">09</span>Budget 2027 im Detail</h2>
     <p class="sub">30 Familien, 30 Freiwillige, Aufbau Jänner–März, Besuche ab April. Die Projektkoordination wird mit <b>20 Wochenstunden auf Honorarbasis beauftragt und bezahlt</b> — das ist die Grundannahme, nicht die Sparvariante. Ein Projekt, das 30 Familien wöchentlich betreut, 30 Freiwillige begleitet, Ausfälle nachbesetzt und gegenüber sechs Fördergebern abrechnet, lässt sich ehrenamtlich nicht führen. Zur Rechtsform der Beauftragung siehe <a href="#verein">Abschnitt 01</a>.</p>
 
+    <div class="note" style="margin-top:16px">
+      <b>Stand Oktober 2026: Das aktuelle Gesamtbudget beträgt € 39.350.</b> Die Detailtabellen unten zeigen noch die ursprüngliche Kalkulation vom Juli (€ 55.300) und dienen als Referenz für die Kostenarten. Sie werden angepasst, sobald die neue Aufteilung der € 39.350 auf die einzelnen Posten feststeht.
+    </div>
+
     <h3 style="margin:26px 0 10px">Honorar der Projektkoordination</h3>
     <div class="tablewrap">
       <table>
@@ -727,7 +749,7 @@
     </div>
     <div class="note" style="margin-top:16px">
       <b>Diese Zahlen sind eine Ausgangsannahme, kein Angebot.</b> Die Gesamtsumme entspricht bewusst dem, was eine Anstellung den Verein gekostet hätte — nur fällt sie jetzt zur Gänze als Honorar an, weil die Lohnnebenkosten entfallen. Vier Dinge müsst ihr vor dem ersten Antrag klären:
-      <br><br><b>1. Was bleibt der Koordination davon?</b> Von € 30.700 gehen rund € 8.400 an die SVS (18,5 % PV, 6,8 % KV, 1,53 % Selbständigenvorsorge, € 155 Unfallversicherung). Nach Gewinnfreibetrag bleiben grob € 1.100 Einkommensteuer. Netto sind das etwa <b>€ 21.200 im Jahr</b> oder € 1.770 im Monat — bei angenommen null Betriebsausgaben und Tarifwerten 2026. Das ist etwas mehr als die Anstellungsvariante bei gleichen Kosten für den Verein, aber es ist auch alles: kein bezahlter Urlaub, keine Entgeltfortzahlung im Krankenstand, kein Kündigungsschutz, kein AMS-Anspruch. In Wien bleibt das ein Teilzeiteinkommen, kein Vollerwerb. Wer davon leben können muss, braucht mehr Stunden oder einen höheren Satz — und beides hebt das Budget über € 55.300. Ein zu knapp angesetztes Honorar später zu erhöhen ist gegenüber Fördergebern deutlich schwerer, als es gleich richtig anzusetzen.
+      <br><br><b>1. Was bleibt der Koordination davon?</b> Von € 30.700 gehen rund € 8.400 an die SVS (18,5 % PV, 6,8 % KV, 1,53 % Selbständigenvorsorge, € 155 Unfallversicherung). Nach Gewinnfreibetrag bleiben grob € 1.100 Einkommensteuer. Netto sind das etwa <b>€ 21.200 im Jahr</b> oder € 1.770 im Monat — bei angenommen null Betriebsausgaben und Tarifwerten 2026. Das ist etwas mehr als die Anstellungsvariante bei gleichen Kosten für den Verein, aber es ist auch alles: kein bezahlter Urlaub, keine Entgeltfortzahlung im Krankenstand, kein Kündigungsschutz, kein AMS-Anspruch. In Wien bleibt das ein Teilzeiteinkommen, kein Vollerwerb. Wer davon leben können muss, braucht mehr Stunden oder einen höheren Satz — und beides hebt das Budget über € 39.350. Ein zu knapp angesetztes Honorar später zu erhöhen ist gegenüber Fördergebern deutlich schwerer, als es gleich richtig anzusetzen.
       <br><br><b>2. Die SVS-Nachbemessung im dritten Jahr.</b> In den ersten Jahren schreibt die SVS vorläufig vor und rechnet später auf die tatsächlichen Einkünfte nach. Die Nachzahlung trifft die Koordination typischerweise 2029 — für 2027. Legt das Geld von Anfang an zur Seite, sonst wird ein gutes Jahr rückwirkend zu einem schlechten.
       <br><br><b>3. Umsatzsteuer.</b> Bei € 30.700 greift die Kleinunternehmerregelung (Grenze € 55.000 Jahresumsatz, § 6 Abs 1 Z 27 UStG) — es fällt keine USt an. Aber: Die Grenze gilt für den <em>gesamten</em> Umsatz der Person, nicht nur für dieses Honorar. Kommen andere selbständige Einkünfte dazu und wird die Grenze überschritten, werden 20 % USt fällig, und ein nicht unternehmerisch tätiger Verein kann keine Vorsteuer abziehen. Das wären <b>rund € 6.100 zusätzliche Kosten</b>, die in diesem Budget nicht enthalten sind. Prüft es einmal jährlich.
       <br><br><b>4. Angemessenheit des Stundensatzes.</b> € 29,50 liegen im üblichen Rahmen für Projektkoordination auf Honorarbasis und decken die selbst zu tragende Sozialversicherung ab. Öffentliche Geber vergleichen trotzdem gern mit KV-Gehältern. Haltet zum Vorstandsbeschluss fest, woraus sich der Satz ableitet — bei einem Honorar an ein Vorstandsmitglied ist das Pflicht, nicht Kür.
@@ -772,13 +794,14 @@
 
     <div class="gapbox" style="margin-top:24px">
       <div class="gaphead">
-        <h3>Gesamt 2027: € 55.300</h3>
-        <span>Koordinationshonorar 55 % · € 1.843 pro Familie</span>
+        <h3>Gesamt 2027 (aktuell): € 39.350</h3>
+        <span>Stand 18. Oktober 2026 · € 1.312 pro Familie</span>
       </div>
-      <div class="bar"><i class="sec" style="width:18.1%"></i><i class="miss" style="width:81.9%"></i></div>
+      <div class="bar"><i class="sec" style="width:25.4%"></i><i class="pend" style="width:55.9%"></i><i class="miss" style="width:18.7%"></i></div>
       <div class="legend">
         <span><b style="background:var(--teal)"></b>€ 10.000 gesichert</span>
-        <span><b style="background:var(--accent)"></b>€ 45.300 einzuwerben</span>
+        <span><b style="background:var(--gold)"></b>€ 22.000 beantragt</span>
+        <span><b style="background:var(--accent)"></b>€ 7.350 einzuwerben</span>
       </div>
     </div>
 
@@ -993,7 +1016,7 @@ const DATA = [
       "Abrechnung: Sachbericht, Belegliste, Zahlungsnachweise; ab € 10.000 sämtliche Belege inkl. Lohnkonten",
       "Kein Rechtsanspruch auf Förderung"
     ],
-    tipp:"<b>Euer wichtigster Antrag — einreichen im September 2026.</b> Der Fonds existiert genau für das, was ihr tut: organisiertes, qualifiziertes Ehrenamt. Entscheidend für euch: Die Projektlaufzeit von bis zu zwei Jahren erlaubt es, <b>Aufbauphase Jän–Mär und Betrieb Apr–Dez 2027 in einem einzigen Antrag</b> zu bündeln — kein anderer Topf deckt die Vorbereitungsphase. Beantragt € 20.000 mit klarem Schwerpunkt auf den Kosten der Koordination — das ist der Posten, den sonst fast niemand trägt. Klärt vorab schriftlich, wie ein <b>Honorar</b> statt eines Gehalts zu belegen ist: Die Richtlinie nennt für Personalkosten Lohnkonten, die es bei einer selbständigen Koordination nicht gibt. Quartalsweise Bearbeitung: September eingereicht heißt realistisch Entscheidung im vierten Quartal, Geld zum Jännerstart.",
+    tipp:"<b>✓ Eingereicht im Oktober 2026 über € 22.000 — Entscheidung ausständig.</b> Der Fonds existiert genau für das, was ihr tut: organisiertes, qualifiziertes Ehrenamt. Entscheidend für euch: Die Projektlaufzeit von bis zu zwei Jahren erlaubt es, <b>Aufbauphase Jän–Mär und Betrieb Apr–Dez 2027 in einem einzigen Antrag</b> zu bündeln — kein anderer Topf deckt die Vorbereitungsphase. Beantragt mit klarem Schwerpunkt auf den Kosten der Koordination — das ist der Posten, den sonst fast niemand trägt. Klärt vorab schriftlich, wie ein <b>Honorar</b> statt eines Gehalts zu belegen ist: Die Richtlinie nennt für Personalkosten Lohnkonten, die es bei einer selbständigen Koordination nicht gibt. Quartalsweise Bearbeitung: September eingereicht heißt realistisch Entscheidung im vierten Quartal, Geld zum Jännerstart.",
     url:"https://www.freiwilligenweb.at/freiwilliges-engagement/anerkennungsfonds/"
   },
   {
